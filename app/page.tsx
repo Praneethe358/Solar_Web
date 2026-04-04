@@ -2,11 +2,104 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, ShieldCheck, Zap, Sun, Shield } from "lucide-react";
 import { SectionWrapper } from "@/components/SectionWrapper";
-import { productData } from "@/lib/dummyData";
-import { ServiceSection } from "@/components/ServiceSection";
-import { ProductCarouselSection } from "@/components/ProductCarouselSection";
+import { CardCarousel } from "@/components/ui/card-carousel";
+import { Component as BlogPostsSection } from "@/components/ui/blog-posts";
+import { getCatalogProducts, getCatalogServices } from "@/lib/catalogData";
 
-export default function Home() {
+export default async function Home() {
+  const [services, products] = await Promise.all([
+    getCatalogServices(),
+    getCatalogProducts(),
+  ]);
+
+  const fallbackImages = [
+    {
+      src: "https://images.unsplash.com/photo-1509391366360-120953a17e1e?q=80&w=800&auto=format&fit=crop",
+      alt: "Solar Panels",
+    },
+    {
+      src: "https://tiimg.tistatic.com/fp/1/008/150/iron-solar-fencing-for-security-purposes-output-voltage-5-10-kva-321.jpg",
+      alt: "Solar Power Systems",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=800&auto=format&fit=crop",
+      alt: "Hydropower Plants",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1508514177221-188b1c77eca2?q=80&w=800&auto=format&fit=crop",
+      alt: "Maintenance Service",
+    },
+  ];
+
+  const serviceCarouselImages = services.slice(0, 8).map((service, index) => {
+    const fallback = fallbackImages[index % fallbackImages.length];
+    const validSrc = service.image?.startsWith("http") ? service.image : fallback.src;
+
+    return {
+      src: validSrc,
+      alt: service.title || fallback.alt,
+    };
+  });
+
+  const carouselImages =
+    serviceCarouselImages.length > 0 ? serviceCarouselImages : fallbackImages;
+
+  const fallbackProductImages = [
+    "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?q=80&w=1600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1508514177221-188b1c77eca2?q=80&w=1600&auto=format&fit=crop",
+  ];
+
+  const productPosts = products.slice(0, 3).map((product, index) => ({
+    id: index + 1,
+    title: product.name,
+    category: product.category || "Solar Products",
+    imageUrl:
+      product.images?.[0]?.startsWith("http")
+        ? product.images[0]
+        : fallbackProductImages[index % fallbackProductImages.length],
+    href: `/products/${product.slug}`,
+    views: 1200 + index * 270,
+    readTime: 4 + index * 2,
+    rating: 5 - (index % 2),
+  }));
+
+  const productSectionPosts =
+    productPosts.length > 0
+      ? productPosts
+      : [
+          {
+            id: 1,
+            title: "Solar Electric Shock Fence",
+            category: "Solar Security",
+            imageUrl: fallbackProductImages[0],
+            href: "/products",
+            views: 1860,
+            readTime: 6,
+            rating: 5,
+          },
+          {
+            id: 2,
+            title: "Solar Power Fencing System",
+            category: "Perimeter Safety",
+            imageUrl: fallbackProductImages[1],
+            href: "/products",
+            views: 1490,
+            readTime: 7,
+            rating: 4,
+          },
+          {
+            id: 3,
+            title: "Agricultural Fencing Kit",
+            category: "Farm Solutions",
+            imageUrl: fallbackProductImages[2],
+            href: "/products",
+            views: 1330,
+            readTime: 5,
+            rating: 4,
+          },
+        ];
+
   return (
     <>
       {/* Hero Section */}
@@ -68,8 +161,28 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Services Section */}
-          <ServiceSection />
+          {/* Service Highlights */}
+          <div className="mb-20">
+            <CardCarousel
+              images={carouselImages}
+              autoplayDelay={3200}
+              showPagination={true}
+              showNavigation={false}
+              showBadge={false}
+              title="Service Highlights"
+              subtitle="Seamless services carousel animation."
+            />
+          </div>
+
+          {/* Products Section */}
+          <BlogPostsSection
+            title="Our Products"
+            description="Explore premium solar fencing and protection systems built for long-term security, durability, and performance."
+            backgroundLabel="PRODUCTS"
+            backgroundPosition="right"
+            posts={productSectionPosts}
+            className="mb-16 mt-8"
+          />
 
           {/* About Content Layout */}
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
@@ -112,9 +225,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Products Section */}
-      <ProductCarouselSection />
 
       {/* Motive / Why Choose Us Section */}
       <section className="bg-[#F5F5F5] py-24 px-4 sm:px-6 lg:px-8">

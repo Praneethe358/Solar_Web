@@ -9,14 +9,17 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "images.unsplash.com",
+        pathname: "/**",
       },
       {
         protocol: "https",
         hostname: "tiimg.tistatic.com",
+        pathname: "/**",
       },
       {
         protocol: "https",
         hostname: "cdn.sanity.io",
+        pathname: "/**",
       },
     ],
   },

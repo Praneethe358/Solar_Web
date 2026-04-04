@@ -1,105 +1,201 @@
-"use client"
+"use client";
 
-import React from "react"
-import Image from "next/image"
-import { Swiper, SwiperSlide } from "swiper/react"
+import React, { useEffect, useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import type { Swiper as SwiperType } from "swiper";
 
-import "swiper/css"
-import "swiper/css/effect-coverflow"
-import "swiper/css/pagination"
-import "swiper/css/navigation"
-import { SparklesIcon } from "lucide-react"
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { ChevronLeft, ChevronRight, SparklesIcon } from "lucide-react";
 import {
-  Autoplay,
   EffectCoverflow,
   Navigation,
   Pagination,
-} from "swiper/modules"
+} from "swiper/modules";
 
-import { Badge } from "@/components/ui/badge"
+import { Badge } from "@/components/ui/badge";
 
 interface CarouselProps {
-  images: { src: string; alt: string }[]
-  autoplayDelay?: number
-  showPagination?: boolean
-  showNavigation?: boolean
+  images: { src: string; alt: string }[];
+  autoplayDelay?: number;
+  showPagination?: boolean;
+  showNavigation?: boolean;
+  showBadge?: boolean;
+  badgeLabel?: string;
+  title?: string;
+  subtitle?: string;
 }
 
 export const CardCarousel: React.FC<CarouselProps> = ({
   images,
-  autoplayDelay = 1500,
+  autoplayDelay = 3000,
   showPagination = true,
   showNavigation = true,
+  showBadge = true,
+  badgeLabel = "Latest Products",
+  title = "Product Highlights",
+  subtitle = "Seamless product carousel animation.",
 }) => {
+  const normalizedImages = images.filter(
+    (image): image is { src: string; alt: string } => Boolean(image?.src),
+  );
+
+  const repeatedImages =
+    normalizedImages.length === 0
+      ? []
+      : Array.from(
+          { length: Math.max(12, normalizedImages.length * 3) },
+          (_, index) => normalizedImages[index % normalizedImages.length],
+        );
+
+  if (repeatedImages.length === 0) {
+    return null;
+  }
+
+  const stepDurationMs = 620;
+
+  const swiperRef = useRef<SwiperType | null>(null);
+
+  useEffect(() => {
+    const swiper = swiperRef.current;
+    if (!swiper) {
+      return;
+    }
+
+    const stepIntervalMs = Math.max(1000, Math.min(autoplayDelay, 2000));
+
+    const timer = setInterval(() => {
+      if (!swiperRef.current || swiperRef.current.destroyed) {
+        return;
+      }
+
+      const current = swiperRef.current;
+      const lastIndex = current.slides.length - 1;
+
+      if (current.activeIndex >= lastIndex) {
+        current.slideTo(0, stepDurationMs, false);
+      } else {
+        current.slideNext(stepDurationMs, false);
+      }
+    }, stepIntervalMs);
+
+    return () => clearInterval(timer);
+  }, [autoplayDelay, repeatedImages.length]);
+
   const css = `
   .swiper {
     width: 100%;
-    padding-bottom: 50px;
+    padding: 16px 0 52px;
   }
-  
+
   .swiper-slide {
     background-position: center;
     background-size: cover;
-    width: 300px;
+    width: 260px;
+    height: 340px;
   }
-  
-  .swiper-slide img {
-    display: block;
-    width: 100%;
+
+  @media (min-width: 768px) {
+    .swiper-slide {
+      width: 320px;
+      height: 420px;
+    }
   }
-  
+
   .swiper-3d .swiper-slide-shadow-left {
     background-image: none;
   }
-  .swiper-3d .swiper-slide-shadow-right{
+  .swiper-3d .swiper-slide-shadow-right {
     background: none;
   }
-  `
+
+  .swiper-pagination-bullet {
+    background: #94a3b8;
+    opacity: 0.55;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: #639922;
+    opacity: 1;
+  }
+
+  .swiper-wrapper {
+    transition-timing-function: linear !important;
+  }
+  `;
+
   return (
-    <section className="w-full space-y-4">
+    <section className="relative w-full py-4">
       <style>{css}</style>
-      <div className="mx-auto w-full max-w-6xl rounded-[24px] border border-slate-200 p-2 shadow-md md:rounded-t-[44px] bg-white">
-        <div className="relative mx-auto flex w-full flex-col rounded-[24px] border border-slate-200 bg-gradient-to-b from-slate-50 to-white p-2 shadow-sm md:items-start md:gap-8 md:rounded-b-[20px] md:rounded-t-[40px] md:p-8">
-          <Badge
-            variant="outline"
-            className="absolute left-4 top-6 rounded-[14px] border border-[#639922]/20 text-base md:left-6 bg-[#639922]/5"
+      <div className="mx-auto w-full max-w-none">
+        <div className="relative mx-auto flex w-full flex-col px-4 py-2 md:px-6 md:py-2">
+          {showBadge && (
+            <Badge
+              variant="outline"
+              className="absolute left-4 top-5 rounded-[14px] border border-black/10 bg-white/80 text-base backdrop-blur md:left-6"
+            >
+              <SparklesIcon className="fill-[#EEBDE0] stroke-1 text-neutral-800" />
+              <span className="ml-1">{badgeLabel}</span>
+            </Badge>
+          )}
+
+          <div
+            className={`flex flex-col justify-center pb-2 pl-4 ${
+              showBadge ? "pt-14" : "pt-6"
+            } md:items-center`}
           >
-            <SparklesIcon className="fill-[#639922] stroke-1 text-[#639922]" />{" "}
-            Our Products
-          </Badge>
-          <div className="flex flex-col justify-center pb-2 pl-4 pt-14 md:items-center md:text-center w-full">
-            <div className="flex gap-2 flex-col">
+            <div className="flex items-center justify-between gap-3 md:min-w-[520px]">
               <div>
-                <h3 className="text-4xl md:text-5xl opacity-100 font-bold tracking-tight text-[#2C2C2A]">
-                  Premium Solar Fencing Solutions
+                <h3 className="text-3xl font-extrabold tracking-tight text-[#0F172A] md:text-5xl">
+                  {title}
                 </h3>
-                <p className="text-slate-600 mt-2 text-lg">
-                  Explore our latest collection of high-performance solar energizers and security systems.
-                </p>
+                <p className="text-[#334155] font-medium md:text-lg">{subtitle}</p>
               </div>
+              {showNavigation && (
+                <div className="hidden items-center gap-2 md:flex">
+                  <button
+                    type="button"
+                    aria-label="Previous slide"
+                    className="swiper-button-prev !static flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 bg-transparent text-slate-700 transition hover:border-[#639922] hover:text-[#639922]"
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                  </button>
+                  <button
+                    type="button"
+                    aria-label="Next slide"
+                    className="swiper-button-next !static flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 bg-transparent text-slate-700 transition hover:border-[#639922] hover:text-[#639922]"
+                  >
+                    <ChevronRight className="h-4 w-4" />
+                  </button>
+                </div>
+              )}
             </div>
           </div>
 
           <div className="flex w-full items-center justify-center gap-4">
             <div className="w-full">
               <Swiper
-                spaceBetween={50}
-                autoplay={{
-                  delay: autoplayDelay,
-                  disableOnInteraction: false,
-                }}
-                effect={"coverflow"}
+                spaceBetween={22}
+                effect="coverflow"
                 grabCursor={true}
                 centeredSlides={true}
-                loop={true}
-                slidesPerView={"auto"}
+                loop={false}
+                speed={stepDurationMs}
+                slidesPerView={1.2}
+                breakpoints={{
+                  640: { slidesPerView: 2.1 },
+                  1024: { slidesPerView: 3.1 },
+                  1280: { slidesPerView: 4.1 },
+                }}
                 coverflowEffect={{
                   rotate: 0,
-                  stretch: 0,
+                  stretch: 12,
                   depth: 100,
-                  modifier: 2.5,
+                  modifier: 1.1,
                 }}
-                pagination={showPagination ? { clickable: true } : false}
+                pagination={showPagination}
                 navigation={
                   showNavigation
                     ? {
@@ -108,18 +204,24 @@ export const CardCarousel: React.FC<CarouselProps> = ({
                       }
                     : undefined
                 }
-                modules={[EffectCoverflow, Autoplay, Pagination, Navigation]}
+                watchSlidesProgress={true}
+                onSwiper={(instance) => {
+                  swiperRef.current = instance;
+                }}
+                onReachEnd={(instance) => {
+                  // Restart from first slide immediately to keep an endless cycle.
+                  instance.slideTo(0, 0, false);
+                }}
+                modules={[EffectCoverflow, Pagination, Navigation]}
               >
-                {images.map((image, index) => (
-                  <SwiperSlide key={index}>
-                    <div className="size-full rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow">
-                      <Image
+                {repeatedImages.map((image, index) => (
+                  <SwiperSlide key={`slide-${index}-${image.alt}`}>
+                    <div className="size-full overflow-hidden">
+                      <img
                         src={image.src}
-                        width={500}
-                        height={500}
-                        className="size-full rounded-xl object-cover"
+                        className="size-full object-cover"
                         alt={image.alt}
-                        priority={index === 0}
+                        loading="lazy"
                       />
                     </div>
                   </SwiperSlide>
@@ -130,5 +232,5 @@ export const CardCarousel: React.FC<CarouselProps> = ({
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
