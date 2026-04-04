@@ -1,5 +1,4 @@
 "use client";
-import { PageHeader } from "@/components/PageHeader";
 import { useState } from "react";
 import { SectionWrapper } from "@/components/SectionWrapper";
 import { MapPin, Phone, Mail, Send, Loader2, CheckCircle2 } from "lucide-react";
@@ -20,19 +19,15 @@ export default function ContactPage() {
 
   return (
     <main className="bg-[#F5F5F5] min-h-screen">
-      <PageHeader 
-        title="Contact Us" 
-        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]} 
-      />
-      <div className="pt-12 pb-16">
+
+      <div className="pt-2 md:pt-4 pb-12 md:pb-16">
         <SectionWrapper>
           {/* Header */}
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-[#639922] font-bold text-[13px] tracking-widest uppercase block mb-4">Get In Touch</span>
-            <h2 className="text-[40px] md:text-[46px] font-extrabold text-[#2C2C2A] leading-[1.15] tracking-tight">
-              We're Here to Help
-            </h2>
-            <p className="text-gray-600 text-lg leading-relaxed mt-6">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h1 className="text-3xl md:text-4xl font-extrabold text-[#2C2C2A] tracking-tight mb-4">
+              Contact Us
+            </h1>
+            <p className="text-[#5F5E5A] text-[15px] leading-relaxed">
               Have questions about our products or need a custom perimeter security assessment? Our team of experts is ready to assist you.
             </p>
           </div>

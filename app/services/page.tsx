@@ -99,7 +99,7 @@ export default async function ServicesPage() {
 
   return (
     <main className="bg-[#F5F5F5] min-h-screen">
-      <section className="bg-white border-b border-slate-200 pt-28 pb-8">
+      <section className="bg-white border-b border-slate-200 pt-6 md:pt-10 pb-8">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="flex items-center justify-between mb-5 gap-4">
             <h1 className="text-3xl md:text-4xl font-extrabold text-[#2C2C2A] tracking-tight">

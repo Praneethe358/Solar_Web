@@ -83,6 +83,16 @@ export default async function Home() {
       views: 1330,
       readTime: 5,
       rating: 4,
+    },
+    {
+      id: 4,
+      title: "Industrial Fence Setup",
+      category: "Commercial",
+      imageUrl: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=1600&auto=format&fit=crop",
+      href: "/products",
+      views: 2100,
+      readTime: 8,
+      rating: 5,
     }
   ];
 

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { PageHeader } from "@/components/PageHeader";
 import { ProductCard } from "@/components/ProductCard";
 import { SectionWrapper } from "@/components/SectionWrapper";
 import { SkeletonCard } from "@/components/SkeletonCard";
@@ -51,18 +50,15 @@ export default function ProductsCatalogClient({
 
   return (
     <main className="bg-[#F5F5F5] min-h-screen">
-      <PageHeader
-        title="Our Products"
-        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Products" }]}
-      />
-      <div className="pt-16 pb-16">
+
+      <div className="pt-2 md:pt-4 pb-12 md:pb-16">
         <SectionWrapper>
           <div className="mb-12 text-center md:text-left mx-auto md:mx-0 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
             <div className="max-w-3xl">
-              <span className="text-[#639922] font-bold text-[13px] tracking-[0.15em] uppercase mb-4 block">
+              <h1 className="text-3xl md:text-4xl font-extrabold text-[#2C2C2A] tracking-tight mb-4">
                 Product Catalog
-              </span>
-              <p className="text-lg text-slate-600 leading-relaxed">
+              </h1>
+              <p className="text-[#5F5E5A] text-[15px] leading-relaxed max-w-2xl">
                 Explore our comprehensive range of high-performance solar energizers,
                 heavy-duty accessories, and complete kits designed for ultimate
                 perimeter security and reliability.
