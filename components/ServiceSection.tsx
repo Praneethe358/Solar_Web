@@ -79,9 +79,6 @@ export function ServiceSection() {
       {/* Header */}
       <div className="text-center max-w-2xl mx-auto mb-16 px-4">
         <span className="text-[#639922] font-bold text-[13px] tracking-widest uppercase mb-4 block">Our Services</span>
-        <h2 className="text-[40px] md:text-5xl font-extrabold text-[#2C2C2A] leading-[1.15] tracking-tight">
-          Best Services <br /> From Us
-        </h2>
       </div>
 
       {/* Grid or Slider Configuration */}

@@ -68,6 +68,9 @@ export default function Home() {
             </div>
           </div>
 
+          {/* Services Section */}
+          <ServiceSection />
+
           {/* About Content Layout */}
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             {/* Left Image Side */}
@@ -153,8 +156,6 @@ export default function Home() {
         </div>
       </section>
       
-      {/* Services Section */}
-      <ServiceSection />
     </>
   );
 }

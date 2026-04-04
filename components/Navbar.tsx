@@ -6,12 +6,13 @@ import { Menu, X, MapPin, Clock, Phone, Globe, MessageCircle, Hash, Mail } from 
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const phoneNumber = "+01222333";
 
   return (
     <header className="flex flex-col w-full z-[100] sticky top-0 shadow-md">
       {/* Top Banner */}
-      <div className="hidden md:flex justify-between items-center w-full bg-[#2C2C2A] text-gray-400 py-1.5 px-4 sm:px-6 lg:px-8 text-xs font-medium">
-        <div className="flex space-x-6">
+      <div className="hidden md:flex items-center justify-center relative w-full bg-[#2C2C2A] text-gray-400 py-1.5 px-4 sm:px-6 lg:px-8 text-xs font-medium">
+        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
           <div className="flex items-center space-x-2">
             <MapPin className="w-3.5 h-3.5 text-[#639922]" />
             <span>222, Texas, USA</span>
@@ -25,7 +26,7 @@ export function Navbar() {
             <span>+01 222 333</span>
           </div>
         </div>
-        <div className="flex items-center space-x-4">
+        <div className="absolute right-4 top-1/2 hidden -translate-y-1/2 items-center space-x-4 lg:flex">
           <Link href="#" className="hover:text-[#639922] transition"><Globe className="w-3.5 h-3.5" /></Link>
           <Link href="#" className="hover:text-[#639922] transition"><MessageCircle className="w-3.5 h-3.5" /></Link>
           <Link href="#" className="hover:text-[#639922] transition"><Hash className="w-3.5 h-3.5" /></Link>
@@ -53,8 +54,8 @@ export function Navbar() {
 
             {/* CTA Button */}
             <div className="hidden md:flex">
-              <Link href="/contact" className="px-5 py-2 text-[#639922] font-bold text-[12px] tracking-widest uppercase border-2 border-[#639922] rounded-full hover:bg-[#639922] hover:text-white transition">
-                Get a Quote
+              <Link href={`tel:${phoneNumber}`} className="px-5 py-2 text-[#639922] font-bold text-[12px] tracking-widest uppercase border-2 border-[#639922] rounded-full hover:bg-[#639922] hover:text-white transition">
+                Call Us
               </Link>
             </div>
 
@@ -72,7 +73,7 @@ export function Navbar() {
             <Link href="/about" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-sm font-bold text-gray-700 hover:text-[#639922] hover:bg-white rounded-md transition-colors">ABOUT</Link>
             <Link href="/products" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-sm font-bold text-gray-700 hover:text-[#639922] hover:bg-white rounded-md transition-colors">PRODUCTS</Link>
             <Link href="/services" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-sm font-bold text-gray-700 hover:text-[#639922] hover:bg-white rounded-md transition-colors">SERVICES</Link>
-            <Link href="/contact" onClick={() => setIsOpen(false)} className="block px-3 py-2.5 mt-4 text-center font-bold text-[12px] tracking-widest uppercase border-2 border-[#639922] text-[#639922] rounded-full hover:bg-[#639922] hover:text-white transition-colors">GET A QUOTE</Link>
+            <Link href={`tel:${phoneNumber}`} onClick={() => setIsOpen(false)} className="block px-3 py-2.5 mt-4 text-center font-bold text-[12px] tracking-widest uppercase border-2 border-[#639922] text-[#639922] rounded-full hover:bg-[#639922] hover:text-white transition-colors">CALL US</Link>
           </div>
         )}
       </nav>

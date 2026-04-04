@@ -77,6 +77,19 @@ export type AboutPage = {
   image?: SanityImage | null;
 };
 
+export type Service = {
+  _id: string;
+  _createdAt?: string;
+  _updatedAt?: string;
+  title: string;
+  slug: string;
+  shortDescription?: string;
+  description: string;
+  displayOrder?: number;
+  isActive?: boolean;
+  image?: SanityImage | null;
+};
+
 export type CatalogProduct = {
   id: string;
   name: string;
@@ -104,4 +117,13 @@ export type AboutPageContent = {
   title: string;
   content: string;
   image: string | null;
+};
+
+export type CatalogService = {
+  id: string;
+  title: string;
+  slug: string;
+  shortDescription: string;
+  description: string;
+  image: string;
 };

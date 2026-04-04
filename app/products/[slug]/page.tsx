@@ -7,6 +7,7 @@ import {
 } from "@/lib/catalogData";
 import { SectionWrapper } from "@/components/SectionWrapper";
 import { ProductEnquireModal } from "@/components/ProductEnquireModal";
+import { ProductCard } from "@/components/ProductCard";
 
 export const dynamicParams = true;
 
@@ -23,11 +24,22 @@ export default async function ProductDetailsPage({
   params,
 }: ProductDetailsPageProps) {
   const { slug } = await params;
-  const product = await getCatalogProductBySlug(slug);
+  const [product, allProducts] = await Promise.all([
+    getCatalogProductBySlug(slug),
+    getCatalogProducts(),
+  ]);
 
   if (!product) {
     notFound();
   }
+
+  const relatedProducts = allProducts
+    .filter(
+      (candidate) =>
+        candidate.slug !== product.slug &&
+        candidate.category === product.category,
+    )
+    .slice(0, 3);
 
   return (
     <main className="pt-[100px] lg:pt-[110px] pb-16 min-h-screen bg-[#F5F5F5]">
@@ -152,6 +164,33 @@ export default async function ProductDetailsPage({
             </div>
           </div>
         </div>
+
+        {relatedProducts.length > 0 && (
+          <section className="mt-12">
+            <div className="flex items-end justify-between mb-5">
+              <div>
+                <h2 className="text-2xl font-extrabold text-[#2C2C2A] tracking-tight">
+                  Related Products
+                </h2>
+                <p className="text-slate-600 mt-1 text-sm">
+                  More options in the {product.category} category.
+                </p>
+              </div>
+              <Link
+                href="/products"
+                className="text-sm font-semibold text-[#639922] hover:text-[#2C2C2A] transition-colors"
+              >
+                View all products
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {relatedProducts.map((relatedProduct) => (
+                <ProductCard key={relatedProduct.id} product={relatedProduct} />
+              ))}
+            </div>
+          </section>
+        )}
       </SectionWrapper>
     </main>
   );

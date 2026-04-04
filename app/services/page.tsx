@@ -1,8 +1,7 @@
-import { ProjectSection } from "@/components/ProjectSection";
-import { PageHeader } from "@/components/PageHeader";
 import { getCatalogProjects } from "@/lib/catalogData";
+import { getCatalogServices } from "@/lib/catalogData";
 import Image from "next/image";
-import { ProductEnquireModal } from "@/components/ProductEnquireModal";
+import { ServicesDetailsPanel } from "@/components/ServicesDetailsPanel";
 
 // Dummy service data matching the homepage section
 const serviceData = [
@@ -65,61 +64,55 @@ const fallbackProjects = [
   { id: "fp-6", title: "Commercial Grid Array", image: "https://tiimg.tistatic.com/fp/1/008/150/iron-solar-fencing-for-security-purposes-output-voltage-5-10-kva-321.jpg" },
 ];
 
+function toAnchor(value: string): string {
+  return value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 export default async function ServicesPage() {
-  const fetchedProjects = await getCatalogProjects();
+  const [fetchedProjects, cmsServices] = await Promise.all([
+    getCatalogProjects(),
+    getCatalogServices(),
+  ]);
   // Ensure we show at least 6 projects, combining fetched ones with fallbacks if needed
   const displayProjects = [...fetchedProjects, ...fallbackProjects].slice(0, Math.max(6, fetchedProjects.length));
 
+  const displayServices =
+    cmsServices.length > 0
+      ? cmsServices.map((service) => ({
+          id: service.id,
+          title: service.title,
+          desc: service.description,
+          image: service.image,
+          anchor: service.slug || toAnchor(service.title),
+        }))
+      : serviceData.map((service) => ({
+          id: String(service.id),
+          title: service.title,
+          desc: service.desc,
+          image: service.image,
+          anchor: toAnchor(service.title),
+        }));
+
   return (
     <main className="bg-[#F5F5F5] min-h-screen">
-      <PageHeader 
-        title="Our Services" 
-        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Services" }]} 
-      />
-      
-      {/* Services List Section */}
-      <div className="py-20 px-4 md:px-8 max-w-7xl mx-auto">
-        <div className="space-y-24">
-          {serviceData.map((service, index) => {
-            const isEven = index % 2 === 0;
-            return (
-              <div 
-                key={service.id} 
-                className={`grid grid-cols-1 lg:grid-cols-12 items-stretch group bg-white shadow-md rounded-2xl overflow-hidden`}
-              >
-                {/* Image takes 5 columns */}
-                <div className={`lg:col-span-5 h-[300px] lg:h-auto relative overflow-hidden ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
-                  <Image 
-                    src={service.image} 
-                    alt={service.title} 
-                    fill 
-                    className="object-cover transition-transform duration-700 group-hover:scale-110" 
-                  />
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
-                </div>
-                
-                {/* Description takes 7 columns */}
-                <div className={`lg:col-span-7 flex flex-col justify-center p-8 lg:p-12 space-y-6 bg-white ${isEven ? 'lg:order-2' : 'lg:order-1'}`}>
-                  <div>
-                    <h3 className="text-3xl md:text-4xl font-extrabold text-[#2C2C2A] tracking-tight hover:text-[#639922] transition-colors duration-300">
-                      {service.title}
-                    </h3>
-                    <div className="w-16 h-1 bg-[#639922] rounded-full mt-4"></div>
-                  </div>
-                  <div className="text-gray-600 text-lg leading-relaxed flex-grow space-y-4">
-                    {service.desc.split('\n\n').map((paragraph, idx) => (
-                      <p key={idx}>{paragraph}</p>
-                    ))}
-                  </div>
-                  <div>
-                    <ProductEnquireModal productName={service.title} />
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+      <section className="bg-white border-b border-slate-200 pt-28 pb-8">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <div className="flex items-center justify-between mb-5 gap-4">
+            <h1 className="text-3xl md:text-4xl font-extrabold text-[#2C2C2A] tracking-tight">
+              Our Services
+            </h1>
+            <span className="text-sm font-semibold text-slate-500 hidden md:block">
+              Choose a service to jump
+            </span>
+          </div>
+
+          <ServicesDetailsPanel services={displayServices} />
         </div>
-      </div>
+      </section>
 
       {/* Projects / Works done section */}
       <div className="py-16 bg-white">

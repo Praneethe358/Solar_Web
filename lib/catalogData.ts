@@ -7,13 +7,16 @@ import {
   getProductBySlug,
   getProducts,
   getProjects,
+  getServices,
 } from "@/lib/sanityFetch";
 import type {
   AboutPageContent,
   CatalogProduct,
   CatalogProject,
+  CatalogService,
   Product as SanityProduct,
   Project as SanityProject,
+  Service as SanityService,
 } from "@/lib/types";
 
 function getImageUrl(image: SanityProduct["mainImage"]): string | null {
@@ -35,6 +38,18 @@ function getProjectImageUrl(image: SanityProject["images"][number] | undefined) 
 
   try {
     return urlFor(image).width(1400).fit("max").auto("format").url();
+  } catch {
+    return null;
+  }
+}
+
+function getServiceImageUrl(image: SanityService["image"]): string | null {
+  if (!image) {
+    return null;
+  }
+
+  try {
+    return urlFor(image).width(1200).fit("max").auto("format").url();
   } catch {
     return null;
   }
@@ -110,6 +125,22 @@ function mapSanityProjectToCatalog(project: SanityProject): CatalogProject {
 export async function getCatalogProjects(): Promise<CatalogProject[]> {
   const projects = await getProjects();
   return projects.map(mapSanityProjectToCatalog);
+}
+
+function mapSanityServiceToCatalog(service: SanityService): CatalogService {
+  return {
+    id: service._id,
+    title: service.title,
+    slug: service.slug,
+    shortDescription: service.shortDescription?.trim() || service.description.slice(0, 180),
+    description: service.description,
+    image: getServiceImageUrl(service.image) || "/placeholder.jpg",
+  };
+}
+
+export async function getCatalogServices(): Promise<CatalogService[]> {
+  const services = await getServices();
+  return services.map(mapSanityServiceToCatalog);
 }
 
 export async function getAboutPageContent(): Promise<AboutPageContent> {

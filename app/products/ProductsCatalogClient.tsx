@@ -33,6 +33,22 @@ export default function ProductsCatalogClient({
       (product.shortDescription || "").toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const productsByCategory = filteredProducts.reduce<Record<string, CatalogProduct[]>>(
+    (acc, product) => {
+      const category = product.category?.trim() || "Uncategorized";
+      if (!acc[category]) {
+        acc[category] = [];
+      }
+      acc[category].push(product);
+      return acc;
+    },
+    {},
+  );
+
+  const orderedCategories = Object.keys(productsByCategory).sort((a, b) =>
+    a.localeCompare(b),
+  );
+
   return (
     <main className="bg-[#F5F5F5] min-h-screen">
       <PageHeader
@@ -69,36 +85,54 @@ export default function ProductsCatalogClient({
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
-            {isLoading ? (
-              Array(8)
+          {isLoading ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
+              {Array(8)
                 .fill(0)
-                .map((_, i) => <SkeletonCard key={i} />)
-            ) : filteredProducts.length > 0 ? (
-              filteredProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))
-            ) : (
-              <div className="col-span-full py-20 text-center flex flex-col items-center">
-                <div className="w-20 h-20 bg-slate-200 rounded-full flex items-center justify-center mb-4">
-                  <Search className="h-8 w-8 text-slate-400" />
-                </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-2">
-                  No products found
-                </h3>
-                <p className="text-slate-500">
-                  We could not find any products matching "
-                  <span className="font-semibold">{searchQuery}</span>".
-                </p>
-                <button
-                  onClick={() => setSearchQuery("")}
-                  className="mt-6 px-6 py-2 bg-[#639922] text-white rounded-full font-medium hover:bg-[#e66a3d] transition"
-                >
-                  Clear Search
-                </button>
+                .map((_, i) => <SkeletonCard key={i} />)}
+            </div>
+          ) : filteredProducts.length > 0 ? (
+            <div className="mt-6 space-y-12">
+              {orderedCategories.map((category) => (
+                <section key={category}>
+                  <div className="mb-4 flex items-end justify-between gap-4">
+                    <h2 className="text-2xl font-extrabold text-[#2C2C2A] tracking-tight">
+                      {category}
+                    </h2>
+                    <span className="text-sm font-semibold text-slate-500">
+                      {productsByCategory[category].length} product
+                      {productsByCategory[category].length > 1 ? "s" : ""}
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {productsByCategory[category].map((product) => (
+                      <ProductCard key={product.id} product={product} />
+                    ))}
+                  </div>
+                </section>
+              ))}
+            </div>
+          ) : (
+            <div className="py-20 text-center flex flex-col items-center">
+              <div className="w-20 h-20 bg-slate-200 rounded-full flex items-center justify-center mb-4">
+                <Search className="h-8 w-8 text-slate-400" />
               </div>
-            )}
-          </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-2">
+                No products found
+              </h3>
+              <p className="text-slate-500">
+                We could not find any products matching "
+                <span className="font-semibold">{searchQuery}</span>".
+              </p>
+              <button
+                onClick={() => setSearchQuery("")}
+                className="mt-6 px-6 py-2 bg-[#639922] text-white rounded-full font-medium hover:bg-[#e66a3d] transition"
+              >
+                Clear Search
+              </button>
+            </div>
+          )}
         </SectionWrapper>
       </div>
     </main>
