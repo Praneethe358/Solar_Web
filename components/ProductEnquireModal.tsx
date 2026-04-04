@@ -22,7 +22,7 @@ export function ProductEnquireModal({ productName }: { productName: string }) {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="bg-[#639922] hover:bg-[#2C2C2A] text-white text-center px-10 py-3.5 rounded font-bold text-xs tracking-widest uppercase transition-all shadow-md items-center justify-center flex"
+        className="w-full sm:w-auto min-h-[44px] bg-[#639922] hover:bg-[#2C2C2A] text-white text-center px-6 sm:px-10 py-3.5 rounded font-bold text-xs tracking-widest uppercase transition-all shadow-md items-center justify-center flex"
       >
         Enquire Now
       </button>

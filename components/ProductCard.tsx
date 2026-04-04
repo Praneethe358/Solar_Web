@@ -6,7 +6,7 @@ export function ProductCard({ product }: { product: CatalogProduct }) {
   return (
     <Link
       href={`/products/${product.slug}`}
-      className="group flex flex-col bg-white border border-slate-200 rounded-lg overflow-hidden hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-[#639922]/30 transition-all duration-300 relative"
+      className="group mx-auto flex h-full w-full max-w-[340px] min-w-0 flex-col bg-white border border-slate-200 rounded-lg overflow-hidden hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-[#639922]/30 transition-all duration-300 relative"
     >
       {product.offer && (
         <div className="absolute top-4 left-4 z-10 bg-[#639922] text-white text-[10px] font-bold tracking-wider uppercase px-3 py-1.5 rounded shadow">
@@ -14,7 +14,7 @@ export function ProductCard({ product }: { product: CatalogProduct }) {
         </div>
       )}
       
-      <div className="h-60 bg-gradient-to-br from-slate-50 to-slate-100/50 w-full flex flex-col items-center justify-center relative overflow-hidden group-hover:bg-slate-100 transition-colors">
+      <div className="h-40 sm:h-48 md:h-52 bg-gradient-to-br from-slate-50 to-slate-100/50 w-full flex flex-col items-center justify-center relative overflow-hidden group-hover:bg-slate-100 transition-colors">
         {product.images && product.images.length > 0 ? (
           <img 
             src={product.images[0]} 
@@ -29,9 +29,9 @@ export function ProductCard({ product }: { product: CatalogProduct }) {
         )}
       </div>
 
-      <div className="p-4 flex flex-col">
+      <div className="p-3 sm:p-4 flex flex-1 flex-col gap-2.5">
         <div>
-          <h3 className="text-lg font-bold text-[#2C2C2A] mb-1 leading-tight group-hover:text-[#639922] transition-colors line-clamp-2">
+          <h3 className="text-base sm:text-lg font-bold text-[#2C2C2A] mb-1 leading-snug break-words group-hover:text-[#639922] transition-colors line-clamp-2">
             {product.name}
           </h3>
 
@@ -42,8 +42,8 @@ export function ProductCard({ product }: { product: CatalogProduct }) {
           )}
         </div>
 
-        <div className="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between text-sm font-semibold text-slate-500 group-hover:text-[#639922] transition-colors w-full">
-          <span className="uppercase tracking-wider text-xs">View Product</span>
+        <div className="mt-auto pt-3 border-t border-slate-100 flex items-center justify-between text-sm font-semibold text-slate-500 group-hover:text-[#639922] transition-colors w-full">
+          <span className="uppercase tracking-[0.14em] text-xs leading-none">View Product</span>
           <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
         </div>
       </div>
