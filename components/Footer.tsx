@@ -4,7 +4,7 @@ import { MapPin, Phone, Mail, MessageCircle } from "lucide-react";
 export function Footer() {
   return (
     <footer className="bg-black border-t border-gray-800">
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           
           {/* Our Address */}
@@ -13,7 +13,7 @@ export function Footer() {
             <div className="space-y-2.5 mb-5">
               <div className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-[#639922] shrink-0 mt-0.5" />
-                <span className="text-gray-400 text-[15px]">123 Street, Texas, USA</span>
+                <span className="text-gray-400 text-[15px] leading-6">123 Street, Texas, USA</span>
               </div>
               <div className="flex items-start space-x-3">
                 <Phone className="w-5 h-5 text-[#639922] shrink-0 mt-0.5" />
@@ -68,9 +68,9 @@ export function Footer() {
           {/* Map */}
           <div>
             <h4 className="text-white text-[18px] font-bold mb-4">Find Us</h4>
-            <div className="w-full h-[160px] bg-gray-200 rounded-lg overflow-hidden">
+            <div className="w-full h-[180px] bg-gray-200 rounded-lg overflow-hidden">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1m3!1d110820.7303032731 (dummy map embed)!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640bc5ebff6af31%3A0xc3cb5da67117fa6a!2sTexas%2C%20USA!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s" 
+                src="https://maps.google.com/maps?q=Texas%20USA&z=10&output=embed"
                 width="100%" 
                 height="100%" 
                 style={{ border: 0 }} 
@@ -86,9 +86,8 @@ export function Footer() {
         
       {/* Bottom Copyright */}
       <div className="border-t border-gray-800 bg-black">
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col md:flex-row justify-between items-center text-[15px] text-gray-400">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-center md:justify-start items-center text-[15px] text-gray-400">
           <p>&copy; {new Date().getFullYear()} Sola. All rights reserved.</p>
-          <p className="mt-4 md:mt-0">Template design by: TemplatesJungle</p>
         </div>
       </div>
     </footer>

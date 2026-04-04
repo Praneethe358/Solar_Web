@@ -60,22 +60,33 @@ export function Navbar() {
             </div>
 
             {/* Mobile Toggle */}
-            <button className="md:hidden p-1 text-slate-800" onClick={() => setIsOpen(!isOpen)}>
+            <button
+              className="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-lg border border-slate-300 bg-white text-slate-800 transition hover:border-[#639922] hover:text-[#639922]"
+              aria-label="Toggle navigation"
+              aria-expanded={isOpen}
+              onClick={() => setIsOpen(!isOpen)}
+            >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
 
         {/* Mobile Menu */}
-        {isOpen && (
-          <div className="md:hidden border-t border-slate-200 bg-[#F5F5F5] px-4 pt-2 pb-6 space-y-1 absolute w-full shadow-xl">
-            <Link href="/" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-sm font-bold text-gray-700 hover:text-[#639922] hover:bg-white rounded-md transition-colors">HOME</Link>
-            <Link href="/about" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-sm font-bold text-gray-700 hover:text-[#639922] hover:bg-white rounded-md transition-colors">ABOUT</Link>
-            <Link href="/products" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-sm font-bold text-gray-700 hover:text-[#639922] hover:bg-white rounded-md transition-colors">PRODUCTS</Link>
-            <Link href="/services" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-sm font-bold text-gray-700 hover:text-[#639922] hover:bg-white rounded-md transition-colors">SERVICES</Link>
-            <Link href={`tel:${phoneNumber}`} onClick={() => setIsOpen(false)} className="block px-3 py-2.5 mt-4 text-center font-bold text-[12px] tracking-widest uppercase border-2 border-[#639922] text-[#639922] rounded-full hover:bg-[#639922] hover:text-white transition-colors">CALL US</Link>
+        <div
+          className={`md:hidden absolute w-full bg-[#F5F5F5] border-t border-slate-200 shadow-xl overflow-hidden transition-all duration-300 ease-out ${
+            isOpen
+              ? "max-h-[420px] opacity-100 translate-y-0"
+              : "max-h-0 opacity-0 -translate-y-2 pointer-events-none"
+          }`}
+        >
+          <div className="px-4 pt-2 pb-6 space-y-1">
+            <Link href="/" onClick={() => setIsOpen(false)} className="block min-h-[44px] px-3 py-2 text-sm font-bold text-gray-700 hover:text-[#639922] hover:bg-white rounded-md transition-colors">HOME</Link>
+            <Link href="/about" onClick={() => setIsOpen(false)} className="block min-h-[44px] px-3 py-2 text-sm font-bold text-gray-700 hover:text-[#639922] hover:bg-white rounded-md transition-colors">ABOUT</Link>
+            <Link href="/products" onClick={() => setIsOpen(false)} className="block min-h-[44px] px-3 py-2 text-sm font-bold text-gray-700 hover:text-[#639922] hover:bg-white rounded-md transition-colors">PRODUCTS</Link>
+            <Link href="/services" onClick={() => setIsOpen(false)} className="block min-h-[44px] px-3 py-2 text-sm font-bold text-gray-700 hover:text-[#639922] hover:bg-white rounded-md transition-colors">SERVICES</Link>
+            <Link href={`tel:${phoneNumber}`} onClick={() => setIsOpen(false)} className="block min-h-[44px] px-3 py-2.5 mt-4 text-center font-bold text-[12px] tracking-widest uppercase border-2 border-[#639922] text-[#639922] rounded-full hover:bg-[#639922] hover:text-white transition-colors">CALL US</Link>
           </div>
-        )}
+        </div>
       </nav>
     </header>
   );
