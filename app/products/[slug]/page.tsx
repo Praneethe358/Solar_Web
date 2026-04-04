@@ -8,6 +8,7 @@ import {
 import { SectionWrapper } from "@/components/SectionWrapper";
 import { ProductEnquireModal } from "@/components/ProductEnquireModal";
 import { ProductCard } from "@/components/ProductCard";
+import { ProductCategorySidebar } from "@/components/ProductCategorySidebar";
 
 export const dynamicParams = true;
 
@@ -49,7 +50,15 @@ export default async function ProductDetailsPage({
           Back to Products
         </Link>
 
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden relative">
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 lg:items-start">
+          {/* Left Sidebar - Categories */}
+          <div className="hidden lg:block lg:w-72 flex-shrink-0">
+            <ProductCategorySidebar products={allProducts} currentProductSlug={slug} />
+          </div>
+
+          {/* Main Content */}
+          <div className="flex-1 min-w-0">
+            <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden relative">
           {product.offer && (
              <div className="absolute top-6 left-6 z-10 bg-[#639922] text-white text-xs font-bold tracking-widest uppercase px-4 py-2 rounded shadow-lg">
                {product.offer}
@@ -163,7 +172,7 @@ export default async function ProductDetailsPage({
 
             </div>
           </div>
-        </div>
+            </div>
 
         {relatedProducts.length > 0 && (
           <section className="mt-12">
@@ -191,6 +200,8 @@ export default async function ProductDetailsPage({
             </div>
           </section>
         )}
+          </div>
+        </div>
       </SectionWrapper>
     </main>
   );
