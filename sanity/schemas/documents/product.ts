@@ -57,46 +57,7 @@ const product = defineType({
       options: {
         hotspot: true,
       },
-      fields: [
-        defineField({
-          name: "alt",
-          title: "Alt Text",
-          type: "string",
-          validation: (rule) => rule.required().min(5).max(160),
-        }),
-      ],
       validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: "gallery",
-      title: "Gallery",
-      type: "array",
-      description:
-        "Additional product visuals for sliders and detail pages. Ordered as uploaded.",
-      of: [
-        defineArrayMember({
-          type: "image",
-          options: {
-            hotspot: true,
-          },
-          fields: [
-            defineField({
-              name: "alt",
-              title: "Alt Text",
-              type: "string",
-              validation: (rule) => rule.required().min(5).max(160),
-            }),
-          ],
-        }),
-      ],
-      validation: (rule) => rule.required().min(1).max(20),
-    }),
-    defineField({
-      name: "shortDescription",
-      title: "Short Description",
-      type: "text",
-      rows: 3,
-      validation: (rule) => rule.required().min(20).max(240),
     }),
     defineField({
       name: "description",
