@@ -2,7 +2,7 @@ import { defineArrayMember, defineField, defineType } from "sanity";
 
 const project = defineType({
   name: "project",
-  title: "Project",
+  title: "Works",
   type: "document",
   fields: [
     defineField({
