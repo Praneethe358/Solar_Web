@@ -74,6 +74,15 @@ export default async function AboutPage() {
                 <h2 className="text-[28px] sm:text-3xl md:text-4xl font-extrabold text-[#2C2C2A] tracking-tight mb-3 sm:mb-4 leading-tight">
                   About Us
                 </h2>
+                <div className="relative mb-4 h-[190px] overflow-hidden rounded-lg border border-slate-200 bg-slate-100 lg:hidden">
+                  <Image
+                    src="https://images.unsplash.com/photo-1497440001374-f26997328c1b?q=80&w=1200&auto=format&fit=crop"
+                    alt="About Safe and Save Equipments"
+                    fill
+                    unoptimized
+                    className="object-cover"
+                  />
+                </div>
                 <p className="text-[#5F5E5A] text-[14px] sm:text-[15px] leading-7 sm:leading-relaxed">
                   Incorporated in the year 2002 at Dindigul, Tamil Nadu, we "Safe & Save Equipments" are a Sole Proprietorship (Individual)
                   based company, engaged as the Manufacturer of Agriculture Solar Fencing and many more. All these products are provided to
@@ -82,7 +91,7 @@ export default async function AboutPage() {
                 </p>
               </div>
 
-              <div className="lg:col-span-4">
+              <div className="hidden lg:block lg:col-span-4">
                 <div className="relative h-[190px] sm:h-[220px] md:h-[260px] rounded-lg sm:rounded-xl overflow-hidden border border-slate-200 bg-slate-100">
                   <Image
                     src="https://images.unsplash.com/photo-1497440001374-f26997328c1b?q=80&w=1200&auto=format&fit=crop"
