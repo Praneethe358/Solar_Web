@@ -18,19 +18,21 @@ import {
   House,
   Wrench,
   PhoneCall,
+  MessageSquare,
 } from "lucide-react";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const phoneNumber = "+01222333";
+  const whatsappNumber = "000111123456";
 
   const mobileNavItems = [
     { href: "/about", label: "About", icon: CircleHelp },
     { href: "/products", label: "Products", icon: Package },
     { href: "/", label: "Home", icon: House },
     { href: "/services", label: "Services", icon: Wrench },
-    { href: `tel:${phoneNumber}`, label: "Call", icon: PhoneCall },
+    { href: "/contact", label: "Contact", icon: MessageSquare },
   ];
 
   return (
@@ -142,6 +144,24 @@ export function Navbar() {
           })}
         </div>
       </nav>
+
+      {/* Mobile Floating Quick Actions */}
+      <div className="fixed bottom-[calc(6.5rem+env(safe-area-inset-bottom))] right-4 z-[125] flex flex-col gap-2.5 md:hidden">
+        <Link
+          href={`https://wa.me/${whatsappNumber}`}
+          className="flex h-11 w-11 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-transform hover:scale-105"
+          aria-label="Chat on WhatsApp"
+        >
+          <MessageCircle className="h-5 w-5" />
+        </Link>
+        <Link
+          href={`tel:${phoneNumber}`}
+          className="flex h-11 w-11 items-center justify-center rounded-full bg-[#639922] text-white shadow-lg transition-transform hover:scale-105"
+          aria-label="Call now"
+        >
+          <PhoneCall className="h-5 w-5" />
+        </Link>
+      </div>
     </header>
   );
 }
