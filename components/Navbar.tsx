@@ -37,7 +37,7 @@ export function Navbar() {
   ];
 
   return (
-    <header className="flex flex-col w-full z-[100] sticky top-0 shadow-md">
+    <header className="fixed inset-x-0 top-0 z-[100] flex flex-col w-full shadow-md md:sticky md:top-0">
       {/* Top Banner */}
       <div className="hidden md:flex items-center justify-center relative w-full bg-[#2C2C2A] text-gray-400 py-1.5 px-4 sm:px-6 lg:px-8 text-xs font-medium">
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
