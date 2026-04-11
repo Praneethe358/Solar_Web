@@ -197,7 +197,8 @@ export default async function Home() {
               <div className="absolute -left-3 -top-3 h-full w-full rounded-2xl bg-[#EDE8DE] sm:-left-4 sm:-top-4" />
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gray-200 shadow-sm">
                 <Image 
-                  src="https://tiimg.tistatic.com/fp/1/008/150/iron-solar-fencing-for-security-purposes-output-voltage-5-10-kva-321.jpg" 
+                  src="/about-section-home.avif"
+                  alt="Quality Solar Fencing System Installation" 
                   alt="Installation of solar panels"
                   fill
                   loading="lazy"
