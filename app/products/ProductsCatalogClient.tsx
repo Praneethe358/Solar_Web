@@ -62,37 +62,32 @@ export default function ProductsCatalogClient({
   );
 
   return (
-    <main className="bg-[#F5F5F5] min-h-screen overflow-x-clip">
-      <div className="pt-2 md:pt-4 pb-10 md:pb-16">
-        <SectionWrapper className="px-4 sm:px-6 lg:px-8 py-10 md:py-12">
-          <div className="mb-8 md:mb-12 text-left mx-auto md:mx-0 flex flex-col md:flex-row justify-between items-start md:items-end gap-4 md:gap-6 w-full">
-            <div className="max-w-3xl w-full min-w-0">
-              <h1 className="text-[30px] md:text-4xl font-extrabold text-[#2C2C2A] tracking-tight mb-3 leading-tight break-words">
-                Product Catalog
-              </h1>
-              <p className="text-[#5F5E5A] text-[15px] leading-relaxed max-w-2xl break-words">
-                Explore our comprehensive range of high-performance solar energizers,
-                heavy-duty accessories, and complete kits designed for ultimate
-                perimeter security and reliability.
-              </p>
-            </div>
-            
-            <div className="w-full md:w-80 relative">
-               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Search className="h-5 w-5 text-gray-400" aria-hidden="true" />
-              </div>
-              <input
-                type="search"
-                name="search"
-                id="search"
-                className="block w-full min-h-[44px] pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-[#5F5E5A] focus:border-[#639922] sm:text-sm transition-colors"
-                placeholder="Search products..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-            </div>
+    <main className="bg-[#F5F5F5] min-h-screen relative">
+      <div className="pb-10 md:pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="sticky top-[50px] md:top-[80px] z-40 bg-[#F5F5F5] pt-2 pb-3 sm:pt-8 md:pb-6 mb-2 text-left flex flex-col md:flex-row justify-between items-start md:items-center gap-3 sm:gap-4 border-b border-gray-200 w-[calc(100%+2rem)] -mx-4 px-4 sm:w-full sm:mx-0 sm:px-0 shadow-[0_4px_6px_-1px_rgba(245,245,245,1)]">
+          <div className="w-full min-w-0">
+            <h1 className="text-[28px] md:text-4xl font-extrabold text-[#2C2C2A] tracking-tight leading-tight break-words">
+              Product Catalog
+            </h1>
           </div>
+          
+          <div className="w-full md:w-96 relative shrink-0">
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <Search className="h-[18px] w-[18px] text-gray-500" aria-hidden="true" />
+            </div>
+            <input
+              type="search"
+              name="search"
+              id="search"
+              className="block w-full min-h-[48px] pl-12 pr-4 py-2 border-2 border-gray-200 rounded-full leading-5 bg-white text-[#2C2C2A] text-[15px] font-medium placeholder-gray-400 focus:outline-none focus:border-[#639922] focus:ring-4 focus:ring-[#639922]/10 transition-all shadow-sm"
+              placeholder="Search products..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+        </div>
 
+        <SectionWrapper className="!py-6 !px-0">
           {isLoading ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mt-6">
               {Array(8)

@@ -23,13 +23,30 @@ export function ServicesTopCarousel({
   onSelect,
 }: ServicesTopCarouselProps) {
   const trackRef = useRef<HTMLDivElement>(null);
-  const [isPaused, setIsPaused] = useState(false);
+  const [isInteracting, setIsInteracting] = useState(false);
+  const interactionTimeout = useRef<NodeJS.Timeout | null>(null);
+
+  const startInteraction = () => {
+    setIsInteracting(true);
+    if (interactionTimeout.current) clearTimeout(interactionTimeout.current);
+  };
+
+  const endInteraction = () => {
+    if (interactionTimeout.current) clearTimeout(interactionTimeout.current);
+    interactionTimeout.current = setTimeout(() => {
+      setIsInteracting(false);
+    }, 1500); // 1.5 seconds wait after last interaction before auto-scrolling
+  };
 
   const scrollByAmount = (direction: "left" | "right") => {
     const container = trackRef.current;
     if (!container) return;
+    
+    startInteraction();
+    endInteraction();
 
     const amount = direction === "right" ? 320 : -320;
+    container.style.scrollBehavior = "smooth";
     container.scrollBy({ left: amount, behavior: "smooth" });
   };
 
@@ -40,12 +57,15 @@ export function ServicesTopCarousel({
     let animationFrameId = 0;
     let virtualScrollLeft = container.scrollLeft;
     let lastTimestamp = 0;
-    const speedPxPerSecond = 12;
+    const speedPxPerSecond = 15; // Slow, smooth continuous scrolling speed
+    
+    // Explicitly turn off CSS smooth scrolling so it doesn't fight the JS animation
+    container.style.scrollBehavior = "auto";
 
     const animate = (timestamp: number) => {
       const loopWidth = container.scrollWidth / 2;
 
-      if (!isPaused && loopWidth > 0) {
+      if (!isInteracting && loopWidth > 0) {
         if (lastTimestamp === 0) {
           lastTimestamp = timestamp;
         }
@@ -61,7 +81,8 @@ export function ServicesTopCarousel({
 
         container.scrollLeft = virtualScrollLeft;
       } else {
-        lastTimestamp = timestamp;
+        lastTimestamp = 0; 
+        virtualScrollLeft = container.scrollLeft;
       }
 
       animationFrameId = window.requestAnimationFrame(animate);
@@ -72,7 +93,7 @@ export function ServicesTopCarousel({
     return () => {
       window.cancelAnimationFrame(animationFrameId);
     };
-  }, [isPaused, services.length]);
+  }, [isInteracting, services.length]);
 
   const loopedServices = [...services, ...services];
 
@@ -98,11 +119,18 @@ export function ServicesTopCarousel({
 
       <div
         ref={trackRef}
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
+        onMouseEnter={startInteraction}
+        onMouseLeave={endInteraction}
+        onTouchStart={startInteraction}
+        onTouchEnd={endInteraction}
+        onWheel={() => {
+          // Pause auto-scroll when user uses mouse wheel to scroll horizontally
+          startInteraction();
+          endInteraction();
+        }}
         className="overflow-x-auto pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       >
-        <div className="flex min-w-max gap-5 md:gap-8 px-1">
+        <div className="flex min-w-max gap-5 md:gap-8 px-1 py-1">
           {loopedServices.map((service, index) => (
             <button
               type="button"

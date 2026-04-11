@@ -7,14 +7,26 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate network delay
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitted(true);
-    }, 1500);
+    
+    // Get form data
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get("name") as string;
+    const mobile = formData.get("mobile") as string;
+    const location = formData.get("location") as string;
+    const message = formData.get("message") as string;
+
+    // Format WhatsApp message
+    const waText = `*New Contact Enquiry*%0A%0A*Name:* ${name}%0A*Mobile:* ${mobile}%0A*Location:* ${location}%0A*Message:* ${message}`;
+    const whatsappUrl = `https://wa.me/918760285985?text=${waText}`;
+
+    // Open WhatsApp
+    window.open(whatsappUrl, "_blank");
+
+    setIsSubmitting(false);
+    setSubmitted(true);
   };
 
   return (
@@ -32,22 +44,22 @@ export default function ContactPage() {
             </p>
           </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-12 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 flex-col-reverse md:flex-row gap-6 lg:gap-12 max-w-6xl mx-auto">
           
-          {/* Left: Contact Info & Map */}
-          <div className="lg:col-span-5 space-y-4 lg:space-y-8">
-            <div className="bg-white rounded-2xl p-5 lg:p-8 shadow-md border-t-4 border-[#639922]">
-              <h3 className="text-lg lg:text-2xl font-extrabold text-[#2C2C2A] mb-4 lg:mb-6">Contact Information</h3>
+          {/* Left: Contact Info & Map (Shows 2nd on mobile) */}
+          <div className="lg:col-span-5 space-y-6 lg:space-y-8 order-2 lg:order-1">
+            <div className="bg-white rounded-2xl p-6 lg:p-8 shadow-md border-t-4 border-[#639922]">
+              <h3 className="text-xl lg:text-2xl font-extrabold text-[#2C2C2A] mb-6">Contact Information</h3>
               
-              <div className="space-y-4 lg:space-y-6">
+              <div className="space-y-6">
                 <div className="flex items-start group">
                   <div className="w-10 h-10 lg:w-12 lg:h-12 bg-[#F5F5F5] text-[#639922] rounded-full flex items-center justify-center mr-3 lg:mr-4 flex-shrink-0 transition-transform group-hover:scale-110">
                     <Phone className="w-4 h-4 lg:w-5 lg:h-5" />
                   </div>
                   <div>
                     <p className="text-[10px] lg:text-[11px] font-bold uppercase tracking-widest text-slate-500 mb-1">Phone</p>
-                    <p className="text-[#2C2C2A] font-bold text-base lg:text-lg">+1 (555) 123-4567</p>
-                    <p className="text-slate-500 text-xs lg:text-sm mt-0.5 lg:mt-1">Mon-Fri 9am-6pm</p>
+                    <a href="tel:+918760285985" className="block text-[#2C2C2A] hover:text-[#639922] transition-colors font-bold text-base lg:text-lg">+91 87602 85985</a>
+                    <a href="tel:+917397285985" className="block text-[#2C2C2A] hover:text-[#639922] transition-colors font-bold text-base lg:text-lg">+91 73972 85985</a>
                   </div>
                 </div>
 
@@ -57,7 +69,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="text-[10px] lg:text-[11px] font-bold uppercase tracking-widest text-slate-500 mb-1">Email</p>
-                    <p className="text-[#2C2C2A] font-bold text-base lg:text-lg">info@supersolarfencing.com</p>
+                    <a href="mailto:supersolarfenc@gmail.com" className="block text-[#2C2C2A] hover:text-[#639922] transition-colors font-bold text-base lg:text-lg">supersolarfenc@gmail.com</a>
                     <p className="text-slate-500 text-xs lg:text-sm mt-0.5 lg:mt-1">Online support 24/7</p>
                   </div>
                 </div>
@@ -68,22 +80,30 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="text-[10px] lg:text-[11px] font-bold uppercase tracking-widest text-slate-500 mb-1">Office Location</p>
-                    <p className="text-[#2C2C2A] font-bold text-base lg:text-lg">123 Fencing St,</p>
-                    <p className="text-slate-500 text-xs lg:text-sm mt-0.5 lg:mt-1">Industrial Hub, TX 75001</p>
+                    <p className="text-[#2C2C2A] font-bold text-base leading-snug">Siruvani Main Road, GH Hospital (opposite)</p>
+                    <p className="text-slate-500 text-xs lg:text-sm mt-0.5 lg:mt-1 border-b border-white">High School Bus Stop,<br/> Post Pooluvapatti, Coimbatore-641101</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Map Placeholder */}
-            <div className="bg-slate-200 rounded-2xl h-56 lg:h-64 overflow-hidden relative shadow-md flex flex-col items-center justify-center group cursor-pointer">
-              <MapPin className="w-10 h-10 lg:w-12 lg:h-12 text-[#639922] mb-2 transition-transform group-hover:scale-110 group-hover:-translate-y-1" />
-              <span className="text-[#2C2C2A] font-bold text-sm lg:text-base">Interactive Map Integration</span>
+            {/* Map Integration */}
+            <div className="bg-slate-200 rounded-2xl h-56 lg:h-64 overflow-hidden relative shadow-md">
+              <iframe 
+                src="https://maps.google.com/maps?q=10.9388339,76.7844005&hl=en&z=14&output=embed"
+                width="100%" 
+                height="100%" 
+                style={{ border: 0 }} 
+                allowFullScreen={true} 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full"
+              ></iframe>
             </div>
           </div>
 
-          {/* Right: Contact Form */}
-          <div className="lg:col-span-7">
+          {/* Right: Contact Form (Shows 1st on mobile) */}
+          <div className="lg:col-span-7 order-1 lg:order-2">
             <div className="bg-white rounded-2xl p-5 md:p-8 lg:p-12 shadow-xl border border-slate-100 h-full relative overflow-hidden">
               {/* Top Accent Line */}
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#5F5E5A] to-[#5F5E5A]"></div>
@@ -111,22 +131,22 @@ export default function ContactPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
                       <div>
                         <label htmlFor="name" className="block text-[10px] lg:text-[11px] font-bold uppercase tracking-widest text-[#2C2C2A] mb-2">Name *</label>
-                        <input required type="text" id="name" className="w-full border-2 border-slate-200 rounded-lg px-3 py-2.5 lg:px-4 lg:py-3 text-sm text-[#2C2C2A] placeholder-slate-400 focus:outline-none focus:ring-0 focus:border-[#639922] transition-colors" placeholder="John Doe" />
+                        <input required name="name" type="text" id="name" className="w-full border-2 border-slate-200 rounded-lg px-3 py-2.5 lg:px-4 lg:py-3 text-sm text-[#2C2C2A] placeholder-slate-400 focus:outline-none focus:ring-0 focus:border-[#639922] transition-colors" placeholder="John Doe" />
                       </div>
                       <div>
                         <label htmlFor="phone" className="block text-[10px] lg:text-[11px] font-bold uppercase tracking-widest text-[#2C2C2A] mb-2">Mobile Number *</label>
-                        <input required type="tel" id="mobile" className="w-full border-2 border-slate-200 rounded-lg px-3 py-2.5 lg:px-4 lg:py-3 text-sm text-[#2C2C2A] placeholder-slate-400 focus:outline-none focus:ring-0 focus:border-[#639922] transition-colors" placeholder="+1 (555) 000-0000" />
+                        <input required name="mobile" type="tel" id="mobile" className="w-full border-2 border-slate-200 rounded-lg px-3 py-2.5 lg:px-4 lg:py-3 text-sm text-[#2C2C2A] placeholder-slate-400 focus:outline-none focus:ring-0 focus:border-[#639922] transition-colors" placeholder="+91 87602 85985" />
                       </div>
                     </div>
                     
                     <div>
                       <label htmlFor="location" className="block text-[10px] lg:text-[11px] font-bold uppercase tracking-widest text-[#2C2C2A] mb-2">Location *</label>
-                      <input required type="text" id="location" className="w-full border-2 border-slate-200 rounded-lg px-3 py-2.5 lg:px-4 lg:py-3 text-sm text-[#2C2C2A] placeholder-slate-400 focus:outline-none focus:ring-0 focus:border-[#639922] transition-colors" placeholder="City, State" />
+                      <input required name="location" type="text" id="location" className="w-full border-2 border-slate-200 rounded-lg px-3 py-2.5 lg:px-4 lg:py-3 text-sm text-[#2C2C2A] placeholder-slate-400 focus:outline-none focus:ring-0 focus:border-[#639922] transition-colors" placeholder="Coimbatore, Tamil Nadu" />
                     </div>
 
                     <div>
                       <label htmlFor="message" className="block text-[10px] lg:text-[11px] font-bold uppercase tracking-widest text-[#2C2C2A] mb-2">How can we help? *</label>
-                      <textarea required id="message" rows={4} className="w-full border-2 border-slate-200 rounded-lg px-3 py-2.5 lg:px-4 lg:py-3 text-sm text-[#2C2C2A] placeholder-slate-400 focus:outline-none focus:ring-0 focus:border-[#639922] transition-colors resize-none" placeholder="Tell us about your requirements..."></textarea>
+                      <textarea required name="message" id="message" rows={4} className="w-full border-2 border-slate-200 rounded-lg px-3 py-2.5 lg:px-4 lg:py-3 text-sm text-[#2C2C2A] placeholder-slate-400 focus:outline-none focus:ring-0 focus:border-[#639922] transition-colors resize-none" placeholder="Tell us about your requirements..."></textarea>
                     </div>
 
                     <button 

@@ -13,9 +13,14 @@ export function ProductEnquireModal({ productName }: { productName: string }) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate sending enquiry and close modal
+    
+    const phoneNumber = "918760285985";
+    const text = `*New Enquiry*\n\n*Product:* ${productName}\n*Name:* ${formData.name}\n*Mobile:* ${formData.mobile}\n*Message:* ${formData.message}`;
+    const encodedText = encodeURIComponent(text);
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedText}`;
+    
+    window.open(whatsappUrl, "_blank");
     setIsOpen(false);
-    alert("Enquiry sent successfully!");
   };
 
   return (

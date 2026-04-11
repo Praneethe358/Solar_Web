@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 148 148" width="148" height="148">
+
+  <!-- SuperSolar Favicon — Concept 5 exact: SS carved from giant bolt -->
+  <rect x="0" y="0" width="148" height="148" rx="20" fill="#111"/>
+
+  <!-- Giant amber bolt filling the icon -->
+  <polygon points="
+    74,8
+    46,72
+    70,72
+    42,140
+    106,64
+    80,64
+    108,8
+  " fill="#E8A020" opacity="0.95"/>
+
+  <!-- SS together, Georgia serif, carved dark from bolt center -->
+  <text x="74" y="98"
+    text-anchor="middle"
+    font-family="Georgia,'Times New Roman',serif"
+    font-size="58"
+    font-weight="700"
+    fill="#111"
+    letter-spacing="-4">SS</text>
+
+</svg>

@@ -83,14 +83,14 @@ export const Component = ({
       >
         <Link 
           href="/products" 
-          className="group flex items-center gap-2 text-lg font-bold text-[#639922] transition-colors hover:text-[#4d7a1a]"
+          className="group flex items-center gap-2 text-base md:text-lg font-bold text-[#639922] transition-colors hover:text-[#4d7a1a]"
         >
           Show More
-          <MoveRight className="transition-transform duration-300 group-hover:translate-x-1" size={20} />
+          <MoveRight className="transition-transform duration-300 group-hover:translate-x-1 w-5 h-5 md:w-6 md:h-6" />
         </Link>
       </motion.div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-6">
         {posts.map((post, index) => {
           const {
             id,
@@ -112,7 +112,7 @@ export const Component = ({
               <Link
                 href={href}
                 className={cn(
-                  "group relative flex h-[280px] md:h-[400px] w-full cursor-pointer flex-col justify-end overflow-hidden rounded-[20px] bg-cover bg-center bg-no-repeat p-4 md:p-6 text-white transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#639922]/20",
+                  "group relative flex h-[250px] sm:h-[280px] md:h-[400px] w-full cursor-pointer flex-col justify-end overflow-hidden rounded-[20px] bg-cover bg-center bg-no-repeat p-4 md:p-6 text-white transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#639922]/20",
                   postClassName,
                 )}
                 style={{ backgroundImage: `url(${imageUrl})` }}

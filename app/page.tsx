@@ -1,8 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Metadata } from 'next';
+import HeroCarousel from "@/components/HeroCarousel";
 import { CardCarousel } from "@/components/ui/card-carousel";
 import { Component as BlogPostsSection } from "@/components/ui/blog-posts";
 import { getCatalogProducts, getCatalogServices } from "@/lib/catalogData";
+
+export const metadata: Metadata = {
+  title: 'Super Solar Fencing | Top Solar Solutions in Coimbatore',
+  description: 'Protect your premises with advanced solar fencing. Super Solar Fencing provides professional installation, top-grade materials, and maintenance in Tamil Nadu.',
+};
 
 export default async function Home() {
   const [services, products] = await Promise.all([
@@ -56,9 +63,9 @@ export default async function Home() {
   const productSectionPosts = [
     {
       id: 1,
-      title: "Solar Electric Shock Fence",
+      title: "Solar fencing materials",
       category: "Solar Security",
-      imageUrl: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?q=80&w=1600&auto=format&fit=crop",
+      imageUrl: "/home_products/product1.jpeg",
       href: "/products",
       views: 1860,
       readTime: 6,
@@ -66,9 +73,9 @@ export default async function Home() {
     },
     {
       id: 2,
-      title: "Solar Power Fencing System",
+      title: "Solar Panel (Mono & Polycrystalline)",
       category: "Perimeter Safety",
-      imageUrl: "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1600&auto=format&fit=crop",
+      imageUrl: "/home_products/product2.jpg",
       href: "/products",
       views: 1490,
       readTime: 7,
@@ -76,9 +83,9 @@ export default async function Home() {
     },
     {
       id: 3,
-      title: "Agricultural Fencing Kit",
+      title: "GI wire",
       category: "Farm Solutions",
-      imageUrl: "https://tiimg.tistatic.com/fp/1/008/150/iron-solar-fencing-for-security-purposes-output-voltage-5-10-kva-321.jpg",
+      imageUrl: "/home_products/product3.jpg",
       href: "/products",
       views: 1330,
       readTime: 5,
@@ -86,9 +93,9 @@ export default async function Home() {
     },
     {
       id: 4,
-      title: "Industrial Fence Setup",
+      title: "Auto Cut Battery Charger 10A",
       category: "Commercial",
-      imageUrl: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=1600&auto=format&fit=crop",
+      imageUrl: "/home_products/product4.jpeg",
       href: "/products",
       views: 2100,
       readTime: 8,
@@ -99,26 +106,19 @@ export default async function Home() {
   return (
     <>
       {/* Mobile-first hero with responsive media and clear CTA hierarchy */}
-      <section className="relative min-h-[65vh] sm:min-h-[18vh] overflow-hidden bg-[#1F2924]">
-        <Image
-          src="https://i.ytimg.com/vi/e59oaLBmi64/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLARKqzi0hlUZzV7Ucb0Oxelc-EiOA"
-          alt="Solar energy field"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center"
-        />
+      <section className="relative min-h-[65vh] sm:min-h-[80vh] md:min-h-[100svh] overflow-hidden bg-[#1F2924]">
+        <HeroCarousel />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/55 to-black/70" />
 
-        <div className="relative mx-auto flex min-h-[65vh] sm:min-h-[78vh] w-full max-w-[1400px] items-center px-4 py-10 sm:px-6 lg:px-8 mt-8 sm:mt-0 sm:py-16">
+        <div className="relative mx-auto flex min-h-[65vh] sm:min-h-[80vh] md:min-h-[100svh] w-full max-w-[1400px] items-center px-4 py-10 sm:px-6 lg:px-8 mt-8 sm:mt-0 sm:py-16">
           <div className="max-w-[290px] space-y-4 sm:max-w-3xl sm:space-y-6">
             <p className="animate-fade-in-up text-[10px] font-bold uppercase tracking-[0.2em] text-[#9CCF63] sm:text-[13px]">
               Trusted Solar Protection
             </p>
             <h1 className="animate-fade-in-up delay-100 text-2xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
-              Secure Perimeters With
+              Super Solar
               <br className="hidden sm:block" />
-              <span className="relative block sm:inline-block text-transparent bg-clip-text bg-gradient-to-r from-white to-[#9CCF63]">Smart Solar Fencing</span>
+              <span className="relative block sm:inline-block text-transparent bg-clip-text bg-gradient-to-r from-white to-[#9CCF63]">Power Fencing Technology</span>
             </h1>
             <p className="animate-fade-in-up delay-200 text-[12px] leading-5 text-gray-200 sm:max-w-2xl sm:text-base sm:leading-7">
               Durable, low-maintenance fencing systems built for farms, factories,
@@ -146,39 +146,26 @@ export default async function Home() {
         <div className="max-w-[1200px] mx-auto">
           {/* Stats cards are horizontal on mobile and 3-column on larger screens */}
           <div className="mb-2">
-            <div className="flex snap-x gap-4 overflow-x-auto pb-2 sm:grid sm:grid-cols-3 sm:gap-5 sm:overflow-visible sm:pb-0">
-            <div className="group min-w-[240px] snap-start rounded-2xl border border-slate-200 bg-white p-5 text-center shadow-sm sm:min-w-0 transition-transform duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[#639922]/30">
-              <p className="text-3xl font-extrabold text-[#639922] sm:text-4xl transition-colors duration-300 group-hover:text-[#547f1d]">50+</p>
-              <p className="mt-2 text-[11px] font-bold uppercase tracking-widest text-slate-600 sm:text-[12px] group-hover:text-[#639922] transition-colors duration-300">
-                Happy Customers
+            <div className="grid grid-cols-3 gap-2 sm:gap-5">
+            <div className="group rounded-2xl border border-slate-200 bg-white p-3 sm:p-5 text-center shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[#639922]/30">
+              <p className="text-xl font-extrabold text-[#639922] sm:text-4xl transition-colors duration-300 group-hover:text-[#547f1d]">40k+</p>
+              <p className="mt-1 sm:mt-2 text-[8px] sm:text-[12px] font-bold uppercase tracking-widest text-slate-600 group-hover:text-[#639922] transition-colors duration-300 leading-tight">
+                Happy<br className="sm:hidden" /> Customers
               </p>
             </div>
-            <div className="group min-w-[240px] snap-start rounded-2xl border border-slate-200 bg-white p-5 text-center shadow-sm sm:min-w-0 transition-transform duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[#639922]/30 delay-100">
-              <p className="text-3xl font-extrabold text-[#639922] sm:text-4xl transition-colors duration-300 group-hover:text-[#547f1d]">30+</p>
-              <p className="mt-2 text-[11px] font-bold uppercase tracking-widest text-slate-600 sm:text-[12px] group-hover:text-[#639922] transition-colors duration-300">
-                Projects Completed
+            <div className="group rounded-2xl border border-slate-200 bg-white p-3 sm:p-5 text-center shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[#639922]/30 delay-100">
+              <p className="text-xl font-extrabold text-[#639922] sm:text-4xl transition-colors duration-300 group-hover:text-[#547f1d]">25k+</p>
+              <p className="mt-1 sm:mt-2 text-[8px] sm:text-[12px] font-bold uppercase tracking-widest text-slate-600 group-hover:text-[#639922] transition-colors duration-300 leading-tight">
+                Projects<br className="sm:hidden" /> Completed
               </p>
             </div>
-            <div className="group min-w-[240px] snap-start rounded-2xl border border-slate-200 bg-white p-5 text-center shadow-sm sm:min-w-0 transition-transform duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[#639922]/30 delay-200">
-              <p className="text-3xl font-extrabold text-[#639922] sm:text-4xl transition-colors duration-300 group-hover:text-[#547f1d]">10+</p>
-              <p className="mt-2 text-[11px] font-bold uppercase tracking-widest text-slate-600 sm:text-[12px] group-hover:text-[#639922] transition-colors duration-300">
-                Product Lines
+            <div className="group rounded-2xl border border-slate-200 bg-white p-3 sm:p-5 text-center shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[#639922]/30 delay-200">
+              <p className="text-xl font-extrabold text-[#639922] sm:text-4xl transition-colors duration-300 group-hover:text-[#547f1d]">30+</p>
+              <p className="mt-1 sm:mt-2 text-[8px] sm:text-[12px] font-bold uppercase tracking-widest text-slate-600 group-hover:text-[#639922] transition-colors duration-300 leading-tight">
+                Product<br className="sm:hidden" /> Lines
               </p>
             </div>
             </div>
-          </div>
-
-          {/* Service Highlights */}
-          <div className="mb-1">
-            <CardCarousel
-              images={carouselImages}
-              autoplayDelay={3200}
-              showPagination={true}
-              showNavigation={false}
-              showBadge={false}
-              title="Service Highlights"
-              subtitle="Seamless services carousel animation."
-            />
           </div>
 
           {/* Products Section */}
@@ -190,6 +177,19 @@ export default async function Home() {
             posts={productSectionPosts}
             className="mb-4 mt-0"
           />
+
+          {/* Service Highlights */}
+          <div className="mb-1 mt-10">
+            <CardCarousel
+              images={carouselImages}
+              autoplayDelay={3200}
+              showPagination={true}
+              showNavigation={false}
+              showBadge={false}
+              title="Our Services"
+              subtitle=""
+            />
+          </div>
 
           {/* About section uses single-column first, then two-column on large screens */}
           <div className="mb-8 mt-10 sm:mt-14 grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-8">
@@ -225,12 +225,14 @@ export default async function Home() {
                 </div>
               </div>
               <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-[#2C2C2A] sm:text-4xl md:text-[42px] lg:text-5xl">
-                Among The Top Solar &
+                Trusted Solar Fencing
                 <br className="hidden sm:block" />
-                Renewable Energy Teams
+                Experts in Coimbatore
               </h2>
               <p className="max-w-xl text-[15px] leading-7 text-[#64748B] sm:text-base">
-                Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo erat amet. Tempor erat sed stet lorem sit clita duo justo elitr rebum at clita diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo erat amet
+                Super Solar Power Fencing Technology is a trusted provider of solar fencing solutions, delivering reliable protection systems for farms, industrial areas, and open lands.
+                <br /><br />
+                We focus on quality products, efficient installation, and customer satisfaction. Our systems are designed to be durable, low maintenance, and highly effective in securing your properties.
               </p>
               <div className="pt-2">
                 <Link
@@ -250,23 +252,23 @@ export default async function Home() {
         <div className="max-w-[1200px] mx-auto">
           <div className="mb-8 max-w-3xl">
             <span className="mb-3 block text-[15px] font-bold uppercase tracking-[0.2em] text-[#639922] sm:text-[17px]">
-              Why Choose Us!
+              Why Choose Us
             </span>
             <h2 className="mb-4 text-3xl font-extrabold leading-tight tracking-tight text-[#2C2C2A] sm:text-4xl md:text-[44px]">
-              Our Motive To Change World
+              Committed to Security, Quality, and Reliability
             </h2>
             <p className="max-w-2xl text-[15px] leading-7 text-[#64748B] sm:text-base">
-              Aliqu diam amet diam et dolor diam ipsum sit tet lorem sit clita duo eos. Clita erat ipsum et lorem et sit, sed tempor erat elitr rebum at clita.
+              We provide cost-effective fencing systems suitable for all types of customers. By using high-quality materials and proven technology backed by an experienced team, we ensure long-lasting performance and complete peace of mind.
             </p>
           </div>
 
           {/* Mobile-first responsive grid: 2 cols on mobile, 3 on tablet, 4 on desktop */}
           <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 lg:gap-5">
             {[
-              { num: "01", text: "Quality\nServices" },
-              { num: "02", text: "Expert\nWorkers" },
-              { num: "03", text: "Free\nConsulting" },
-              { num: "04", text: "Customer\nSupport" }
+              { num: "01", text: "Quality\nProducts" },
+              { num: "02", text: "Experienced\nTeam" },
+              { num: "03", text: "Reliable\nSupport" },
+              { num: "04", text: "Affordable\nSolutions" }
             ].map((item, i) => (
               <div
                 key={i}

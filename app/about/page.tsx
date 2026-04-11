@@ -6,26 +6,24 @@ export const revalidate = 30;
 
 export default async function AboutPage() {
   const factsheetBasic = [
-    ["Nature of Business", "Manufacturer"],
-    ["Additional Business", "Retail Business, Service Provision"],
-    ["Company CEO", "K.C. Senthil Kumar"],
+    ["Nature of Business", "Manufacture and sales"],
+    ["Additional Business", "Installation and service"],
+    ["Company CEO", "R. Thirumoorthi"],
     [
       "Registered Address",
-      "No. 19, Kanthavel Nagar, GTN College Road, Dindigul - 624001, Tamil Nadu, India",
+      "Siruvani Main Road, GH Hospital (opposite), High School Bus Stop, Post Pooluvapatti, Coimbatore-641101",
     ],
     ["Total Number of Employees", "11 to 25 People"],
-    ["GST Registration Date", "01-07-2017"],
     ["Legal Status of Firm", "Proprietorship"],
     ["Annual Turnover", "40 L - 1.5 Cr"],
-    ["GST Partner Name", "Senthilkumar Kumar Chellapa"],
+    ["Since", "2006"],
   ];
 
   const factsheetStatutory = [
-    ["Banker", "ICICI Bank, ICICI BANK, ICICI BANK, HDFC BANK LTD"],
-    ["GST No.", "33BABPK2153G1Z8"],
+    ["GST No.", "33BCJPT064801ZP"],
   ];
 
-  const paymentModes = ["Cash", "Credit Card", "Cheque", "DD", "Online"];
+  const paymentModes = ["Cash", "Online Payment"];
 
   const whyUs = [
     "Advanced processing facility",
@@ -38,9 +36,9 @@ export default async function AboutPage() {
   ];
 
   const infraImages = [
-    "https://images.unsplash.com/photo-1509391366360-120953a17e1e?q=80&w=1200&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1497440001374-f26997328c1b?q=80&w=1200&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=1200&auto=format&fit=crop",
+    "/about_images/about1.jpeg",
+    "/about_images/about2.jpeg",
+    "/about_images/about3.jpeg",
   ];
 
   const youtubeLinks = [
@@ -70,35 +68,38 @@ export default async function AboutPage() {
         <div className="mx-auto max-w-[1200px] space-y-5 sm:space-y-8">
           <div className="bg-white border border-slate-200 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-sm">
             <div className="grid lg:grid-cols-12 gap-5 sm:gap-6 items-center">
-              <div className="lg:col-span-8">
+              <div className="lg:col-span-7">
                 <h2 className="text-[28px] sm:text-3xl md:text-4xl font-extrabold text-[#2C2C2A] tracking-tight mb-3 sm:mb-4 leading-tight">
                   About Us
                 </h2>
-                <div className="relative mb-4 h-[190px] overflow-hidden rounded-lg border border-slate-200 bg-slate-100 lg:hidden">
+                <div className="relative mb-4 w-full aspect-video overflow-hidden rounded-lg border border-slate-200 bg-slate-100 lg:hidden">
                   <Image
-                    src="https://images.unsplash.com/photo-1497440001374-f26997328c1b?q=80&w=1200&auto=format&fit=crop"
-                    alt="About Safe and Save Equipments"
+                    src="/about_images/about1.jpeg"
+                    alt="About Super Solar Power Fencing Technology"
                     fill
                     unoptimized
-                    className="object-cover"
+                    className="object-contain"
                   />
                 </div>
                 <p className="text-[#5F5E5A] text-[14px] sm:text-[15px] leading-7 sm:leading-relaxed">
-                  Incorporated in the year 2002 at Dindigul, Tamil Nadu, we "Safe & Save Equipments" are a Sole Proprietorship (Individual)
-                  based company, engaged as the Manufacturer of Agriculture Solar Fencing and many more. All these products are provided to
-                  the customer after tested on various quality parameters. Under the mentorship of "K.C. Senthil Kumar" we have gained name
-                  and fame in the market. We also render Solar Power Plant Service and many more.
+                  Established in 2006 at Coimbatore, Tamil Nadu, <strong>Super Solar Power Fencing Technology</strong> is a trusted proprietorship firm 
+                  dedicated to manufacturing and supplying high-quality agriculture and industrial solar fencing solutions. 
+                  Leveraging modern technology and quality-approved parameters, our products provide unparalleled safety, durability, 
+                  and long-term reliability in securing varied properties.
+                  <br /><br />
+                  Under the experienced guidance of our CEO, <strong>R. Thirumoorthi</strong>, we have earned strong market credibility, delivering 
+                  efficient installations, regular maintenance, and round-the-clock service to our ever-expanding and highly satisfied client base across the region.
                 </p>
               </div>
 
-              <div className="hidden lg:block lg:col-span-4">
-                <div className="relative h-[190px] sm:h-[220px] md:h-[260px] rounded-lg sm:rounded-xl overflow-hidden border border-slate-200 bg-slate-100">
+              <div className="hidden lg:block lg:col-span-5">
+                <div className="relative w-full aspect-square xl:aspect-[4/3] rounded-lg sm:rounded-xl overflow-hidden border border-slate-200 bg-slate-100">
                   <Image
-                    src="https://images.unsplash.com/photo-1497440001374-f26997328c1b?q=80&w=1200&auto=format&fit=crop"
-                    alt="About Safe and Save Equipments"
+                    src="/about_images/about1.jpeg"
+                    alt="About Super Solar Power Fencing Technology"
                     fill
                     unoptimized
-                    className="object-cover"
+                    className="object-contain"
                   />
                 </div>
               </div>
@@ -117,13 +118,13 @@ export default async function AboutPage() {
                 Contact Us
               </Link>
 
-            <div className="relative mt-4 sm:mt-6 h-[210px] sm:h-[280px] md:h-[320px] rounded-lg sm:rounded-2xl overflow-hidden border border-slate-200 bg-slate-100">
+            <div className="relative mt-4 sm:mt-6 w-full aspect-video sm:aspect-auto sm:h-[400px] lg:h-[500px] rounded-lg sm:rounded-2xl overflow-hidden border border-slate-200 bg-slate-100">
               <Image
-                src="https://images.unsplash.com/photo-1497440001374-f26997328c1b?q=80&w=1200&auto=format&fit=crop"
-                alt="Company infrastructure board"
+                src="/about_images/banner.jpeg"
+                alt="Super Solar Power Fencing Technology banner"
                 fill
                 unoptimized
-                className="object-cover"
+                className="object-contain"
               />
             </div>
           </div>
@@ -200,13 +201,13 @@ export default async function AboutPage() {
 
               <div className="mt-4 sm:mt-6 grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-3">
                 {infraImages.map((image, index) => (
-                  <div key={image} className="relative aspect-[4/3] rounded-md overflow-hidden border border-slate-200">
+                  <div key={image} className="relative aspect-square sm:aspect-[4/3] rounded-md overflow-hidden border border-slate-200 bg-slate-100">
                     <Image
                       src={image}
                       alt={`Infrastructure image ${index + 1}`}
                       fill
                       unoptimized
-                      className="object-cover"
+                      className="object-contain hover:scale-105 transition-transform duration-300"
                     />
                   </div>
                 ))}

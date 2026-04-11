@@ -156,7 +156,9 @@ export const CardCarousel: React.FC<CarouselProps> = ({
                 <h3 className="text-3xl font-extrabold tracking-tight text-[#0F172A] md:text-5xl">
                   {title}
                 </h3>
-                <p className="text-[#334155] font-medium md:text-lg">{subtitle}</p>
+                {subtitle && (
+                  <p className="text-[#334155] font-medium md:text-lg">{subtitle}</p>
+                )}
               </div>
               {showNavigation && (
                 <div className="hidden items-center gap-2 md:flex">

@@ -25,8 +25,8 @@ import {
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
-  const phoneNumber = "+01222333";
-  const whatsappNumber = "000111123456";
+  const phoneNumber = "+918760285985";
+  const whatsappNumber = "918760285985";
 
   const mobileNavItems = [
     { href: "/about", label: "About", icon: CircleHelp },
@@ -43,22 +43,22 @@ export function Navbar() {
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
           <div className="flex items-center space-x-2">
             <MapPin className="w-3.5 h-3.5 text-[#639922]" />
-            <span>222, Texas, USA</span>
+            <span>Pooluvapatti, Coimbatore</span>
           </div>
           <div className="flex items-center space-x-2">
             <Clock className="w-3.5 h-3.5 text-[#639922]" />
-            <span>10 AM - 8 PM</span>
+            <span>9-7, Sunday & festival leave</span>
           </div>
           <div className="flex items-center space-x-2">
             <Phone className="w-3.5 h-3.5 text-[#639922]" />
-            <span>+01 222 333</span>
+            <span>+91 87602 85985</span>
           </div>
         </div>
         <div className="absolute right-4 top-1/2 hidden -translate-y-1/2 items-center space-x-4 lg:flex">
-          <Link href="#" className="hover:text-[#639922] transition"><Globe className="w-3.5 h-3.5" /></Link>
-          <Link href="#" className="hover:text-[#639922] transition"><MessageCircle className="w-3.5 h-3.5" /></Link>
-          <Link href="#" className="hover:text-[#639922] transition"><Hash className="w-3.5 h-3.5" /></Link>
-          <Link href="#" className="hover:text-[#639922] transition"><Mail className="w-3.5 h-3.5" /></Link>
+          <Link href="https://www.facebook.com/share/1ExVB36hD3/" target="_blank" className="hover:text-[#639922] transition"><Globe className="w-3.5 h-3.5" /></Link>
+          <Link href="https://wa.me/8760285985" target="_blank" className="hover:text-[#639922] transition"><MessageCircle className="w-3.5 h-3.5" /></Link>
+          <Link href="https://www.instagram.com/supersolarfencing_8760285985" target="_blank" className="hover:text-[#639922] transition"><Hash className="w-3.5 h-3.5" /></Link>
+          <Link href="mailto:supersolarfenc@gmail.com" className="hover:text-[#639922] transition"><Mail className="w-3.5 h-3.5" /></Link>
         </div>
       </div>
 
@@ -68,16 +68,16 @@ export function Navbar() {
           <div className="flex justify-between h-14 md:h-16 items-center">
             {/* Logo */}
             <Link href="/" className="font-extrabold text-2xl md:text-3xl tracking-tight text-[#639922]">
-              Sola.
+              Super Solar.
             </Link>
 
             {/* Desktop Links */}
             <div className="hidden md:flex space-x-8 text-[12px] font-bold tracking-widest text-gray-600 uppercase">
-              <Link href="/" className="hover:text-[#639922] transition">Home</Link>
-              <Link href="/about" className="hover:text-[#639922] transition">About</Link>
-              <Link href="/products" className="hover:text-[#639922] transition">Products</Link>
-              <Link href="/services" className="hover:text-[#639922] transition">Services</Link>
-              <Link href="/contact" className="hover:text-[#639922] transition">Contact</Link>
+              <Link href="/" className={`transition ${pathname === "/" || pathname === null ? "text-[#639922]" : "hover:text-[#639922]"}`}>Home</Link>
+              <Link href="/about" className={`transition ${pathname === "/about" || pathname?.startsWith("/about/") ? "text-[#639922]" : "hover:text-[#639922]"}`}>About</Link>
+              <Link href="/products" className={`transition ${pathname === "/products" || pathname?.startsWith("/products/") ? "text-[#639922]" : "hover:text-[#639922]"}`}>Products</Link>
+              <Link href="/services" className={`transition ${pathname === "/services" || pathname?.startsWith("/services/") ? "text-[#639922]" : "hover:text-[#639922]"}`}>Services</Link>
+              <Link href="/contact" className={`transition ${pathname === "/contact" || pathname?.startsWith("/contact/") ? "text-[#639922]" : "hover:text-[#639922]"}`}>Contact</Link>
             </div>
 
             {/* CTA Button */}
@@ -108,10 +108,10 @@ export function Navbar() {
           }`}
         >
           <div className="px-4 pt-2 pb-6 space-y-1">
-            <Link href="/" onClick={() => setIsOpen(false)} className="block min-h-[44px] px-3 py-2 text-sm font-bold text-gray-700 hover:text-[#639922] hover:bg-white rounded-md transition-colors">HOME</Link>
-            <Link href="/about" onClick={() => setIsOpen(false)} className="block min-h-[44px] px-3 py-2 text-sm font-bold text-gray-700 hover:text-[#639922] hover:bg-white rounded-md transition-colors">ABOUT</Link>
-            <Link href="/products" onClick={() => setIsOpen(false)} className="block min-h-[44px] px-3 py-2 text-sm font-bold text-gray-700 hover:text-[#639922] hover:bg-white rounded-md transition-colors">PRODUCTS</Link>
-            <Link href="/services" onClick={() => setIsOpen(false)} className="block min-h-[44px] px-3 py-2 text-sm font-bold text-gray-700 hover:text-[#639922] hover:bg-white rounded-md transition-colors">SERVICES</Link>
+            <Link href="/" onClick={() => setIsOpen(false)} className={`block min-h-[44px] px-3 py-2 text-sm font-bold rounded-md transition-colors ${pathname === "/" || pathname === null ? "text-[#639922] bg-white" : "text-gray-700 hover:text-[#639922] hover:bg-white"}`}>HOME</Link>
+            <Link href="/about" onClick={() => setIsOpen(false)} className={`block min-h-[44px] px-3 py-2 text-sm font-bold rounded-md transition-colors ${pathname === "/about" || pathname?.startsWith("/about/") ? "text-[#639922] bg-white" : "text-gray-700 hover:text-[#639922] hover:bg-white"}`}>ABOUT</Link>
+            <Link href="/products" onClick={() => setIsOpen(false)} className={`block min-h-[44px] px-3 py-2 text-sm font-bold rounded-md transition-colors ${pathname === "/products" || pathname?.startsWith("/products/") ? "text-[#639922] bg-white" : "text-gray-700 hover:text-[#639922] hover:bg-white"}`}>PRODUCTS</Link>
+            <Link href="/services" onClick={() => setIsOpen(false)} className={`block min-h-[44px] px-3 py-2 text-sm font-bold rounded-md transition-colors ${pathname === "/services" || pathname?.startsWith("/services/") ? "text-[#639922] bg-white" : "text-gray-700 hover:text-[#639922] hover:bg-white"}`}>SERVICES</Link>
             <Link href={`tel:${phoneNumber}`} onClick={() => setIsOpen(false)} className="block min-h-[44px] px-3 py-2.5 mt-4 text-center font-bold text-[12px] tracking-widest uppercase border-2 border-[#639922] text-[#639922] rounded-full hover:bg-[#639922] hover:text-white transition-colors">CALL US</Link>
           </div>
         </div>
@@ -125,7 +125,10 @@ export function Navbar() {
         <div className="grid grid-cols-5 gap-0.5">
           {mobileNavItems.map((item) => {
             const Icon = item.icon;
-            const isActive = item.href !== `tel:${phoneNumber}` && pathname === item.href;
+            const currentPath = pathname || "/";
+            const isActive = 
+              item.href !== `tel:${phoneNumber}` && 
+              (currentPath === item.href || (item.href !== "/" && currentPath.startsWith(item.href + "/")));
 
             return (
               <Link
