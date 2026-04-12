@@ -47,7 +47,7 @@ const productProjection = groq`{
 
 export const allProductsQuery = groq`
   *[_type == "product"]
-  | order(_createdAt desc)
+  | order(coalesce(featuredOrder, 999999) asc, _createdAt desc)
   ${productProjection}
 `;
 
