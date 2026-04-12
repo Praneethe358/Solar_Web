@@ -198,7 +198,6 @@ export default async function Home() {
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gray-200 shadow-sm">
                 <Image 
                   src="/about-section-home.avif"
-                  alt="Quality Solar Fencing System Installation" 
                   alt="Installation of solar panels"
                   fill
                   loading="lazy"
