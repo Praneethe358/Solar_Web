@@ -123,22 +123,15 @@ export default async function ServicesPage() {
           </h2>
         </div>
         
-        {/* Gallery for Works (Always visible name on mobile, hover on desktop) */}
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 px-4 md:px-8 max-w-7xl mx-auto">
-          {displayProjects.map(project => (
-            <div key={project.id} className="group relative w-full h-[180px] sm:h-[240px] md:h-[300px] rounded-none overflow-hidden shadow-md cursor-pointer">
-              <Image 
-                src={project.image} 
-                alt={project.title} 
-                fill 
-                className="object-cover transition-transform duration-700 group-hover:scale-110"
+          {displayProjects.map((project) => (
+            <div key={project.id} className="group relative w-full h-[180px] sm:h-[240px] md:h-[300px] rounded-none overflow-hidden shadow-md">
+              <Image
+                src={project.image}
+                alt="Completed installation"
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              {/* Overlay: permanent on mobile, hover on desktop */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300"></div>
-              
-              <div className="absolute bottom-0 left-0 w-full p-3 sm:p-6 md:translate-y-4 md:group-hover:translate-y-0 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300">
-                <h4 className="text-white text-sm sm:text-lg md:text-xl font-bold leading-tight line-clamp-2">{project.title}</h4>
-              </div>
             </div>
           ))}
         </div>

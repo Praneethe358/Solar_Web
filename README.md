@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Super Solar Fencing — website
 
-## Getting Started
+This is the company site for **Super Solar Power Fencing Technology**, a solar fencing supplier and installer based in Coimbatore, Tamil Nadu. The pages cover products, services, about, contact, PDFs, and project imagery.
 
-First, run the development server:
+## Stack
+
+- **Next.js** (App Router) + **React** + **TypeScript**
+- **Tailwind CSS** for styling
+- **Sanity** for CMS content (products, services, projects, etc.) via `next-sanity`
+- **Framer Motion** and **Swiper** where animations/carousels are used
+
+## Project layout (where to look)
+
+| Path | What it is |
+|------|------------|
+| `app/` | Routes and pages (`page.tsx`, layouts) |
+| `app/studio/` | Sanity Studio UI (see below) |
+| `components/` | Shared UI and sections |
+| `lib/` | Data helpers (`catalogData`, Sanity client/fetch, types) |
+| `sanity/` | Sanity schema, structure, env helpers |
+| `public/` | Static files (images, PDFs) — served as-is |
+
+## Environment variables
+
+Create a **`.env.local`** in the project root (not committed). The app expects:
+
+- `NEXT_PUBLIC_SANITY_PROJECT_ID` — Sanity project ID  
+- `NEXT_PUBLIC_SANITY_DATASET` — dataset name (e.g. `production`)  
+- `NEXT_PUBLIC_SANITY_API_VERSION` — optional; defaults are set in `sanity/env.ts` if unset  
+
+Without the Sanity vars, the client in `lib/sanityClient.ts` will throw at runtime when those modules load.
+
+## Scripts
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev          # dev server — http://localhost:3000
+npm run build        # production build
+npm start            # run production build locally
+npm run lint         # ESLint
+npm run seed:cms     # sample Sanity seed (see scripts/)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Sanity Studio
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+With `npm run dev` running, open **`/studio`** to edit CMS content (schemas live under `sanity/schemas`). Queries and mapping into the app are in `lib/sanityFetch.ts` and `lib/catalogData.ts`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Build for production
 
-## Learn More
+```bash
+npm run build
+npm start
+```
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Set the same env vars on your host (Vercel, etc.) so production builds can talk to Sanity.

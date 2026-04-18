@@ -94,8 +94,8 @@ export const CardCarousel: React.FC<CarouselProps> = ({
   .swiper-slide {
     background-position: center;
     background-size: cover;
-    width: 260px;
-    height: 340px;
+    width: 280px;
+    height: 300px;
   }
 
   @media (min-width: 768px) {
@@ -105,7 +105,7 @@ export const CardCarousel: React.FC<CarouselProps> = ({
 
     .swiper-slide {
       width: 320px;
-      height: 420px;
+      height: 400px;
     }
   }
 
@@ -229,7 +229,7 @@ export const CardCarousel: React.FC<CarouselProps> = ({
                       <Link href={image.href} className="block size-full overflow-hidden relative group cursor-pointer">
                         <img
                           src={image.src}
-                          className="size-full object-cover transition-transform duration-700 group-hover:scale-105"
+                          className="size-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                           alt={image.alt}
                           loading="lazy"
                         />
@@ -241,7 +241,7 @@ export const CardCarousel: React.FC<CarouselProps> = ({
                       <div className="size-full overflow-hidden relative group">
                         <img
                           src={image.src}
-                          className="size-full object-cover transition-transform duration-700 group-hover:scale-105"
+                          className="size-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                           alt={image.alt}
                           loading="lazy"
                         />

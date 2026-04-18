@@ -81,11 +81,9 @@ export function AboutProductVideos({ videos }: AboutProductVideosProps) {
               )}
             </div>
 
-            <p className="font-bold text-[#2C2C2A] mt-4 mb-3 text-lg sm:text-xl leading-tight">{video.title}</p>
-
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center bg-[#639922] text-white px-6 py-2.5 rounded-md font-bold hover:bg-[#5F5E5A] transition"
+              className="mt-4 inline-flex items-center justify-center bg-[#639922] text-white px-6 py-2.5 rounded-md font-bold hover:bg-[#5F5E5A] transition"
             >
               Get Quote
             </Link>

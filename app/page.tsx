@@ -106,11 +106,11 @@ export default async function Home() {
   return (
     <>
       {/* Mobile-first hero with responsive media and clear CTA hierarchy */}
-      <section className="relative min-h-[65vh] sm:min-h-[80vh] md:min-h-[100svh] overflow-hidden bg-[#1F2924]">
+      <section className="relative w-full min-h-[min(55svh,360px)] sm:min-h-[min(78vh,760px)] md:min-h-[min(52vh,560px)] md:max-h-[560px] overflow-hidden bg-[#1F2924]">
         <HeroCarousel />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/55 to-black/70" />
+        <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/60 via-black/55 to-black/70" />
 
-        <div className="relative mx-auto flex min-h-[65vh] sm:min-h-[80vh] md:min-h-[100svh] w-full max-w-[1400px] items-center px-4 py-10 sm:px-6 lg:px-8 mt-8 sm:mt-0 sm:py-16">
+        <div className="relative z-[2] mx-auto flex min-h-[min(50svh,340px)] w-full max-w-[1400px] items-center px-4 py-6 sm:min-h-[min(70vh,720px)] sm:px-6 sm:py-16 md:min-h-[min(52vh,560px)] md:py-12">
           <div className="max-w-[290px] space-y-4 sm:max-w-3xl sm:space-y-6">
             <p className="animate-fade-in-up text-[10px] font-bold uppercase tracking-[0.2em] text-[#9CCF63] sm:text-[13px]">
               Trusted Solar Protection
@@ -138,6 +138,47 @@ export default async function Home() {
                 Contact Us
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mobile-Optimized PDF Guidelines Banner */}
+      <section className="bg-white border-b border-slate-200">
+        <div className="max-w-[1200px] mx-auto px-4 py-4 sm:p-5 lg:px-8">
+          <div className="flex flex-col sm:flex-row gap-3">
+            <a 
+              href="/pdf/Notes_260313_112341.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex-1 flex items-center gap-3.5 bg-[#f8faf9] border border-[#639922]/30 rounded-xl p-3 sm:p-4 hover:border-[#639922]/60 hover:shadow-sm transition-all active:scale-[0.98] group"
+            >
+              <div className="w-11 h-11 rounded-full bg-[#639922]/10 text-[#639922] flex items-center justify-center group-hover:bg-[#639922] group-hover:text-white transition-colors shrink-0">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <div className="flex flex-col text-left">
+                <span className="text-[13px] sm:text-sm font-extrabold text-[#2C2C2A] leading-tight">Solar Work Details (Tamil)</span>
+                <span className="text-[10px] sm:text-xs text-slate-500 mt-0.5 tracking-wide font-medium">View Guidelines PDF</span>
+              </div>
+            </a>
+            
+            <a 
+              href="/pdf/Forest Dept -Solar Fence-Gazette-Date 04.07.2023.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex-1 flex items-center gap-3.5 bg-[#f8faf9] border border-[#639922]/30 rounded-xl p-3 sm:p-4 hover:border-[#639922]/60 hover:shadow-sm transition-all active:scale-[0.98] group"
+            >
+              <div className="w-11 h-11 rounded-full bg-[#639922]/10 text-[#639922] flex items-center justify-center group-hover:bg-[#639922] group-hover:text-white transition-colors shrink-0">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                </svg>
+              </div>
+              <div className="flex flex-col text-left">
+                <span className="text-[13px] sm:text-sm font-extrabold text-[#2C2C2A] leading-tight">Forest Dept Gazette</span>
+                <span className="text-[10px] sm:text-xs text-slate-500 mt-0.5 tracking-wide font-medium">Government Notification</span>
+              </div>
+            </a>
           </div>
         </div>
       </section>

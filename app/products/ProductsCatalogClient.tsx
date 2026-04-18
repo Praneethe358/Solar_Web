@@ -64,7 +64,7 @@ export default function ProductsCatalogClient({
   return (
     <main className="bg-[#F5F5F5] min-h-screen relative">
       <div className="pb-10 md:pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="sticky top-[50px] md:top-[80px] z-40 bg-[#F5F5F5] pt-2 pb-3 sm:pt-8 md:pb-6 mb-2 text-left flex flex-col md:flex-row justify-between items-start md:items-center gap-3 sm:gap-4 border-b border-gray-200 w-[calc(100%+2rem)] -mx-4 px-4 sm:w-full sm:mx-0 sm:px-0 shadow-[0_4px_6px_-1px_rgba(245,245,245,1)]">
+        <div className="sticky top-14 md:top-[100px] z-40 -mx-4 w-[calc(100%+2rem)] px-4 sm:mx-0 sm:w-full sm:px-0 bg-[#F5F5F5] pt-0 pb-3 sm:pt-6 md:pt-8 md:pb-6 mb-2 text-left flex flex-col md:flex-row justify-between items-start md:items-center gap-3 sm:gap-4 border-b border-gray-200 shadow-[0_4px_6px_-1px_rgba(245,245,245,1)]">
           <div className="w-full min-w-0">
             <h1 className="text-[28px] md:text-4xl font-extrabold text-[#2C2C2A] tracking-tight leading-tight break-words">
               Product Catalog

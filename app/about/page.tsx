@@ -44,21 +44,18 @@ export default async function AboutPage() {
   const youtubeLinks = [
     {
       title: "Solar Electric Fencing",
-      videoId: "tgbNymZ7vqY",
-      thumbnail:
-        "https://images.unsplash.com/photo-1621905251918-48416bd8575a?q=80&w=1200&auto=format&fit=crop",
+      videoId: "pGtLzAmOs0o",
+      thumbnail: "https://img.youtube.com/vi/pGtLzAmOs0o/maxresdefault.jpg",
     },
     {
       title: "Solar Powered Electric Fence",
-      videoId: "xrqUsV0uLOM",
-      thumbnail:
-        "https://images.unsplash.com/photo-1611365892117-00d8f8f2f2be?q=80&w=1200&auto=format&fit=crop",
+      videoId: "aJogUEAH9BI",
+      thumbnail: "https://img.youtube.com/vi/aJogUEAH9BI/maxresdefault.jpg",
     },
     {
       title: "Precast Prestressed Wall Fence",
-      videoId: "tgbNymZ7vqY",
-      thumbnail:
-        "https://images.unsplash.com/photo-1605152276897-4f618f831968?q=80&w=1200&auto=format&fit=crop",
+      videoId: "w5Wja6brPqI",
+      thumbnail: "https://img.youtube.com/vi/w5Wja6brPqI/maxresdefault.jpg",
     },
   ];
 
