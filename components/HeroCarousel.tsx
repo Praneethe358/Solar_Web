@@ -6,7 +6,8 @@ import Image from "next/image";
 /** Local assets under public/hero_images — keep in sync with deployed files */
 const heroImages = [
   "/hero_images/hero1.jpeg",
-  "/hero_images/hero-ex.jpg",
+  "/hero_images/hero2.jpeg",
+  "/hero_images/hero3.webp",
 ];
 
 export default function HeroCarousel() {
