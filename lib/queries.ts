@@ -66,8 +66,7 @@ const projectProjection = groq`{
   _id,
   _createdAt,
   _updatedAt,
-  title,
-  description,
+  displayOrder,
   images[]{
     ...,
     asset->{
@@ -106,7 +105,7 @@ const serviceProjection = groq`{
 
 export const allProjectsQuery = groq`
   *[_type == "project"]
-  | order(_createdAt desc)
+  | order(coalesce(displayOrder, 999999) asc, _createdAt desc)
   ${projectProjection}
 `;
 

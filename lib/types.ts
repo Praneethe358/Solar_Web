@@ -64,8 +64,9 @@ export type Project = {
   _id: string;
   _createdAt?: string;
   _updatedAt?: string;
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
+  displayOrder?: number;
   images: SanityImage[];
 };
 

@@ -6,12 +6,6 @@ const project = defineType({
   type: "document",
   fields: [
     defineField({
-      name: "title",
-      title: "Title",
-      type: "string",
-      validation: (rule) => rule.required().min(2).max(140),
-    }),
-    defineField({
       name: "images",
       title: "Images",
       type: "array",
@@ -36,29 +30,37 @@ const project = defineType({
       validation: (rule) => rule.required().min(1).max(30),
     }),
     defineField({
-      name: "description",
-      title: "Description",
-      type: "text",
-      rows: 8,
-      validation: (rule) => rule.required().min(40).max(4000),
+      name: "displayOrder",
+      title: "Display Order",
+      type: "number",
+      description: "Lower numbers show first in the works list.",
+      validation: (rule) =>
+        rule
+          .required()
+          .integer()
+          .min(1)
+          .warning("Use positive whole numbers for ordering."),
     }),
   ],
   preview: {
     select: {
-      title: "title",
+      title: "images.0.alt",
       media: "images.0",
     },
   },
   orderings: [
     {
+      title: "Display Order",
+      name: "displayOrder",
+      by: [
+        { field: "displayOrder", direction: "asc" },
+        { field: "_createdAt", direction: "desc" },
+      ],
+    },
+    {
       title: "Newest",
       name: "newest",
       by: [{ field: "_createdAt", direction: "desc" }],
-    },
-    {
-      title: "Title (A-Z)",
-      name: "titleAsc",
-      by: [{ field: "title", direction: "asc" }],
     },
   ],
 });

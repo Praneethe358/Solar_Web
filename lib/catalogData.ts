@@ -111,13 +111,15 @@ export async function getCatalogCategories(): Promise<string[]> {
 
 function mapSanityProjectToCatalog(project: SanityProject): CatalogProject {
   const mainImage = getProjectImageUrl(project.images?.[0]);
+  const fallbackTitle =
+    project.title?.trim() || project.images?.[0]?.alt?.trim() || "Work";
 
   return {
     id: project._id,
-    title: project.title,
+    title: fallbackTitle,
     category: "Installation",
     image: mainImage || "/placeholder-project.jpg",
-    description: project.description,
+    description: project.description?.trim() || undefined,
   };
 }
 
