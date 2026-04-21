@@ -55,6 +55,18 @@ const category = defineType({
       description: "Brief helper text shown on product category sections.",
       validation: (rule) => rule.max(220),
     }),
+    defineField({
+      name: "displayOrder",
+      title: "Display Order",
+      type: "number",
+      description: "Lower numbers show first in the category list.",
+      validation: (rule) =>
+        rule
+          .required()
+          .integer()
+          .min(1)
+          .warning("Use positive whole numbers for ordering."),
+    }),
   ],
   preview: {
     select: {
@@ -62,6 +74,14 @@ const category = defineType({
     },
   },
   orderings: [
+    {
+      title: "Display Order",
+      name: "displayOrder",
+      by: [
+        { field: "displayOrder", direction: "asc" },
+        { field: "_createdAt", direction: "desc" },
+      ],
+    },
     {
       title: "Title (A-Z)",
       name: "titleAsc",

@@ -19,7 +19,8 @@ const productProjection = groq`{
     _id,
     title,
     "slug": slug.current,
-    shortDescription
+    shortDescription,
+    displayOrder
   },
   mainImage{
     ...,

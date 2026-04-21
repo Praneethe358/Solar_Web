@@ -14,6 +14,7 @@ type ProductsCatalogClientProps = {
 type CategorySectionData = {
   products: CatalogProduct[];
   shortDescription: string;
+  displayOrder: number;
 };
 
 export default function ProductsCatalogClient({
@@ -44,11 +45,22 @@ export default function ProductsCatalogClient({
         acc[category] = {
           products: [],
           shortDescription: product.categoryShortDescription?.trim() || "",
+          displayOrder:
+            typeof product.categoryDisplayOrder === "number"
+              ? product.categoryDisplayOrder
+              : 999999,
         };
       }
 
       if (!acc[category].shortDescription && product.categoryShortDescription?.trim()) {
         acc[category].shortDescription = product.categoryShortDescription.trim();
+      }
+
+      if (
+        typeof product.categoryDisplayOrder === "number" &&
+        product.categoryDisplayOrder < acc[category].displayOrder
+      ) {
+        acc[category].displayOrder = product.categoryDisplayOrder;
       }
 
       acc[category].products.push(product);
@@ -58,7 +70,9 @@ export default function ProductsCatalogClient({
   );
 
   const orderedCategories = Object.keys(productsByCategory).sort((a, b) =>
-    a.localeCompare(b),
+    productsByCategory[a].displayOrder === productsByCategory[b].displayOrder
+      ? a.localeCompare(b)
+      : productsByCategory[a].displayOrder - productsByCategory[b].displayOrder,
   );
 
   return (

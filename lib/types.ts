@@ -41,6 +41,7 @@ export type Category = {
   title: string;
   slug: string;
   shortDescription?: string;
+  displayOrder?: number;
 };
 
 export type Product = {
@@ -98,6 +99,7 @@ export type CatalogProduct = {
   slug: string;
   category: string;
   categoryShortDescription?: string;
+  categoryDisplayOrder?: number;
   shortDescription: string;
   description: string;
   features: string[];

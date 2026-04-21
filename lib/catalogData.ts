@@ -71,6 +71,7 @@ function mapSanityProductToCatalog(product: SanityProduct): CatalogProduct {
     slug: product.slug,
     category: product.category?.title || "Uncategorized",
     categoryShortDescription: product.category?.shortDescription?.trim() || "",
+    categoryDisplayOrder: product.category?.displayOrder,
     shortDescription,
     description: product.description || "",
     features: product.features ?? [],
