@@ -86,7 +86,6 @@ export type Service = {
   _updatedAt?: string;
   title: string;
   slug: string;
-  shortDescription?: string;
   description: string;
   displayOrder?: number;
   isActive?: boolean;
@@ -122,7 +121,6 @@ export type CatalogService = {
   id: string;
   title: string;
   slug: string;
-  shortDescription: string;
   description: string;
   image: string;
 };

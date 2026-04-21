@@ -64,7 +64,7 @@ const product = defineType({
       title: "Description",
       type: "text",
       rows: 8,
-      validation: (rule) => rule.required().min(50),
+      validation: (rule) => rule.max(4000),
     }),
     defineField({
       name: "features",
@@ -78,8 +78,6 @@ const product = defineType({
       ],
       validation: (rule) =>
         rule
-          .required()
-          .min(1)
           .max(30)
           .custom((features) => {
             if (!Array.isArray(features)) {
@@ -104,8 +102,6 @@ const product = defineType({
       of: [defineArrayMember({ type: "specification" })],
       validation: (rule) =>
         rule
-          .required()
-          .min(1)
           .max(40)
           .custom((specifications) => {
             if (!Array.isArray(specifications)) {

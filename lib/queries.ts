@@ -87,7 +87,6 @@ const serviceProjection = groq`{
   _updatedAt,
   title,
   "slug": slug.current,
-  shortDescription,
   description,
   displayOrder,
   isActive,

@@ -47,13 +47,6 @@ const service = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "shortDescription",
-      title: "Short Description",
-      type: "text",
-      rows: 3,
-      validation: (rule) => rule.required().min(10).max(240),
-    }),
-    defineField({
       name: "description",
       title: "Description",
       type: "text",
@@ -95,14 +88,13 @@ const service = defineType({
   preview: {
     select: {
       title: "title",
-      subtitle: "shortDescription",
       media: "image",
       isActive: "isActive",
     },
-    prepare({ title, subtitle, media, isActive }) {
+    prepare({ title, media, isActive }) {
       return {
         title,
-        subtitle: isActive ? subtitle : `Inactive - ${subtitle ?? ""}`,
+        subtitle: isActive ? "Active" : "Inactive",
         media,
       };
     },

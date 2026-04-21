@@ -134,7 +134,6 @@ function mapSanityServiceToCatalog(service: SanityService): CatalogService {
     id: service._id,
     title: service.title,
     slug: service.slug,
-    shortDescription: service.shortDescription?.trim() || service.description.slice(0, 180),
     description: service.description,
     image: getServiceImageUrl(service.image) || "/placeholder.jpg",
   };
