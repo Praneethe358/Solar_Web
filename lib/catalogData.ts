@@ -54,6 +54,7 @@ function getServiceImageUrl(image: SanityService["image"]): string | null {
 }
 
 function mapSanityProductToCatalog(product: SanityProduct): CatalogProduct {
+  const fallbackProductImage = "/hero_images/hero1.jpeg";
   const mainImageUrl = getImageUrl(product.mainImage ?? null);
   const galleryUrls = (product.gallery ?? [])
     .map((image) => getImageUrl(image))
@@ -76,7 +77,7 @@ function mapSanityProductToCatalog(product: SanityProduct): CatalogProduct {
     description: product.description || "",
     features: product.features ?? [],
     specifications: product.specifications ?? [],
-    images: images.length > 0 ? images : ["/placeholder.jpg"],
+    images: images.length > 0 ? images : [fallbackProductImage],
     price: undefined // CMS has no price field; dummy data stripped.
   };
 }
@@ -111,6 +112,7 @@ export async function getCatalogCategories(): Promise<string[]> {
 }
 
 function mapSanityProjectToCatalog(project: SanityProject): CatalogProject {
+  const fallbackProjectImage = "/hero_images/hero1.jpeg";
   const mainImage = getProjectImageUrl(project.images?.[0]);
   const fallbackTitle =
     project.title?.trim() || project.images?.[0]?.alt?.trim() || "Work";
@@ -119,7 +121,7 @@ function mapSanityProjectToCatalog(project: SanityProject): CatalogProject {
     id: project._id,
     title: fallbackTitle,
     category: "Installation",
-    image: mainImage || "/placeholder-project.jpg",
+    image: mainImage || fallbackProjectImage,
     description: project.description?.trim() || undefined,
   };
 }

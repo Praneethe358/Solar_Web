@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import {
@@ -25,8 +25,23 @@ import {
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const [resolvedPath, setResolvedPath] = useState("/");
   const phoneNumber = "+918760285985";
   const whatsappNumber = "918760285985";
+
+  const normalizePath = (path: string | null | undefined) => {
+    if (!path) return "/";
+    const normalized = path.replace(/\/+$/, "");
+    return normalized || "/";
+  };
+
+  useEffect(() => {
+    // On some mobile browsers, pathname hydration can lag briefly.
+    // Read from location to keep active-tab state accurate at first paint.
+    const livePath = normalizePath(window.location.pathname);
+    const nextPath = normalizePath(pathname);
+    setResolvedPath(livePath || nextPath);
+  }, [pathname]);
 
   const mobileNavItems = [
     { href: "/about", label: "About", icon: CircleHelp },
@@ -108,10 +123,10 @@ export function Navbar() {
           }`}
         >
           <div className="px-4 pt-2 pb-6 space-y-1">
-            <Link href="/" onClick={() => setIsOpen(false)} className={`block min-h-[44px] px-3 py-2 text-sm font-bold rounded-md transition-colors ${pathname === "/" || pathname === null ? "text-[#639922] bg-white" : "text-gray-700 hover:text-[#639922] hover:bg-white"}`}>HOME</Link>
-            <Link href="/about" onClick={() => setIsOpen(false)} className={`block min-h-[44px] px-3 py-2 text-sm font-bold rounded-md transition-colors ${pathname === "/about" || pathname?.startsWith("/about/") ? "text-[#639922] bg-white" : "text-gray-700 hover:text-[#639922] hover:bg-white"}`}>ABOUT</Link>
-            <Link href="/products" onClick={() => setIsOpen(false)} className={`block min-h-[44px] px-3 py-2 text-sm font-bold rounded-md transition-colors ${pathname === "/products" || pathname?.startsWith("/products/") ? "text-[#639922] bg-white" : "text-gray-700 hover:text-[#639922] hover:bg-white"}`}>PRODUCTS</Link>
-            <Link href="/services" onClick={() => setIsOpen(false)} className={`block min-h-[44px] px-3 py-2 text-sm font-bold rounded-md transition-colors ${pathname === "/services" || pathname?.startsWith("/services/") ? "text-[#639922] bg-white" : "text-gray-700 hover:text-[#639922] hover:bg-white"}`}>SERVICES</Link>
+            <Link href="/" onClick={() => setIsOpen(false)} className={`block min-h-[44px] px-3 py-2 text-sm font-bold rounded-md transition-colors ${resolvedPath === "/" ? "text-[#639922] bg-white" : "text-gray-700 hover:text-[#639922] hover:bg-white"}`}>HOME</Link>
+            <Link href="/about" onClick={() => setIsOpen(false)} className={`block min-h-[44px] px-3 py-2 text-sm font-bold rounded-md transition-colors ${resolvedPath === "/about" || resolvedPath.startsWith("/about/") ? "text-[#639922] bg-white" : "text-gray-700 hover:text-[#639922] hover:bg-white"}`}>ABOUT</Link>
+            <Link href="/products" onClick={() => setIsOpen(false)} className={`block min-h-[44px] px-3 py-2 text-sm font-bold rounded-md transition-colors ${resolvedPath === "/products" || resolvedPath.startsWith("/products/") ? "text-[#639922] bg-white" : "text-gray-700 hover:text-[#639922] hover:bg-white"}`}>PRODUCTS</Link>
+            <Link href="/services" onClick={() => setIsOpen(false)} className={`block min-h-[44px] px-3 py-2 text-sm font-bold rounded-md transition-colors ${resolvedPath === "/services" || resolvedPath.startsWith("/services/") ? "text-[#639922] bg-white" : "text-gray-700 hover:text-[#639922] hover:bg-white"}`}>SERVICES</Link>
             <Link href={`tel:${phoneNumber}`} onClick={() => setIsOpen(false)} className="block min-h-[44px] px-3 py-2.5 mt-4 text-center font-bold text-[12px] tracking-widest uppercase border-2 border-[#639922] text-[#639922] rounded-full hover:bg-[#639922] hover:text-white transition-colors">CALL US</Link>
           </div>
         </div>
@@ -125,10 +140,11 @@ export function Navbar() {
         <div className="grid grid-cols-5 gap-0.5">
           {mobileNavItems.map((item) => {
             const Icon = item.icon;
-            const currentPath = pathname || "/";
+            const currentPath = normalizePath(resolvedPath);
+            const itemPath = normalizePath(item.href);
             const isActive = 
               item.href !== `tel:${phoneNumber}` && 
-              (currentPath === item.href || (item.href !== "/" && currentPath.startsWith(item.href + "/")));
+              (currentPath === itemPath || (itemPath !== "/" && currentPath.startsWith(itemPath + "/")));
 
             return (
               <Link

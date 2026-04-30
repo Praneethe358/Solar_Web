@@ -96,6 +96,12 @@ export default async function ServicesPage() {
           image: service.image,
           anchor: toAnchor(service.title),
         }));
+  const projectLightboxSources = displayProjects
+    .map((project) => project.image?.trim())
+    .filter(
+      (image): image is string =>
+        Boolean(image) && (image.startsWith("/") || image.startsWith("http")),
+    );
 
   return (
     <main className="bg-[#F5F5F5] min-h-screen">
@@ -129,8 +135,11 @@ export default async function ServicesPage() {
               <ResponsiveLightboxImage
                 src={project.image}
                 alt="Completed installation"
-                sources={displayProjects.map((item) => item.image)}
-                initialIndex={displayProjects.findIndex((item) => item.id === project.id)}
+                sources={projectLightboxSources}
+                initialIndex={Math.max(
+                  projectLightboxSources.findIndex((image) => image === project.image),
+                  0,
+                )}
                 imageClassName="object-cover transition-transform duration-700 group-hover:scale-105"
               />
             </div>

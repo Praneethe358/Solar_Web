@@ -23,13 +23,25 @@ export function ResponsiveLightboxImage({
 }: ResponsiveLightboxImageProps) {
   const [toggler, setToggler] = useState(false);
   const [slide, setSlide] = useState(initialIndex + 1);
+  const fallbackSource = "/hero_images/hero1.jpeg";
 
   const lightboxSources = useMemo(
-    () => (sources && sources.length > 0 ? sources : [src]),
+    () => {
+      const inputSources = sources && sources.length > 0 ? sources : [src];
+      const sanitized = inputSources
+        .map((source) => source?.trim())
+        .filter(
+          (source): source is string =>
+            Boolean(source) && (source.startsWith("/") || source.startsWith("http")),
+        );
+
+      return sanitized.length > 0 ? sanitized : [fallbackSource];
+    },
     [sources, src],
   );
 
   const safeIndex = Math.min(Math.max(initialIndex, 0), lightboxSources.length - 1);
+  const displaySrc = lightboxSources[safeIndex] || fallbackSource;
 
   const handleOpen = () => {
     setSlide(safeIndex + 1);
@@ -45,7 +57,7 @@ export function ResponsiveLightboxImage({
         aria-label={`Open image: ${alt}`}
       >
         <img
-          src={src}
+          src={displaySrc}
           alt={alt}
           className={cn("h-full w-full", imageClassName)}
           loading="lazy"
