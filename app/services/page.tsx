@@ -1,7 +1,7 @@
 import { getCatalogProjects } from "@/lib/catalogData";
 import { getCatalogServices } from "@/lib/catalogData";
-import Image from "next/image";
 import { ServicesDetailsPanel } from "@/components/ServicesDetailsPanel";
+import { ResponsiveLightboxImage } from "@/components/ResponsiveLightboxImage";
 
 // Dummy service data matching the homepage section
 const serviceData = [
@@ -126,11 +126,12 @@ export default async function ServicesPage() {
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 px-4 md:px-8 max-w-7xl mx-auto">
           {displayProjects.map((project) => (
             <div key={project.id} className="group relative w-full h-[180px] sm:h-[240px] md:h-[300px] rounded-none overflow-hidden shadow-md">
-              <Image
+              <ResponsiveLightboxImage
                 src={project.image}
                 alt="Completed installation"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                sources={displayProjects.map((item) => item.image)}
+                initialIndex={displayProjects.findIndex((item) => item.id === project.id)}
+                imageClassName="object-cover transition-transform duration-700 group-hover:scale-105"
               />
             </div>
           ))}

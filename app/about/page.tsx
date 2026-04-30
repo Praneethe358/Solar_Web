@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { AboutProductVideos } from "@/components/AboutProductVideos";
+import { ResponsiveLightboxImage } from "@/components/ResponsiveLightboxImage";
 
 export const revalidate = 30;
 
@@ -20,7 +20,7 @@ export default async function AboutPage() {
   ];
 
   const factsheetStatutory = [
-    ["GST No.", "33BCJPT064801ZP"],
+    ["GST No.", "33BCJPT0648D1ZP"],
   ];
 
   const paymentModes = ["Cash", "Online Payment"];
@@ -70,12 +70,10 @@ export default async function AboutPage() {
                   About Us
                 </h2>
                 <div className="relative mb-4 w-full aspect-video overflow-hidden rounded-lg border border-slate-200 bg-slate-100 lg:hidden">
-                  <Image
+                  <ResponsiveLightboxImage
                     src="/about_images/about1.jpeg"
                     alt="About Super Solar Power Fencing Technology"
-                    fill
-                    unoptimized
-                    className="object-contain"
+                    imageClassName="object-contain"
                   />
                 </div>
                 <p className="text-[#5F5E5A] text-[14px] sm:text-[15px] leading-7 sm:leading-relaxed">
@@ -91,12 +89,10 @@ export default async function AboutPage() {
 
               <div className="hidden lg:block lg:col-span-5">
                 <div className="relative w-full aspect-square xl:aspect-[4/3] rounded-lg sm:rounded-xl overflow-hidden border border-slate-200 bg-slate-100">
-                  <Image
+                  <ResponsiveLightboxImage
                     src="/about_images/about1.jpeg"
                     alt="About Super Solar Power Fencing Technology"
-                    fill
-                    unoptimized
-                    className="object-contain"
+                    imageClassName="object-contain"
                   />
                 </div>
               </div>
@@ -116,12 +112,10 @@ export default async function AboutPage() {
               </Link>
 
             <div className="relative mt-4 sm:mt-6 w-full aspect-video sm:aspect-auto sm:h-[400px] lg:h-[500px] rounded-lg sm:rounded-2xl overflow-hidden border border-slate-200 bg-slate-100">
-              <Image
+              <ResponsiveLightboxImage
                 src="/about_images/banner.jpeg"
                 alt="Super Solar Power Fencing Technology banner"
-                fill
-                unoptimized
-                className="object-contain"
+                imageClassName="object-contain"
               />
             </div>
           </div>
@@ -199,12 +193,12 @@ export default async function AboutPage() {
               <div className="mt-4 sm:mt-6 grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-3">
                 {infraImages.map((image, index) => (
                   <div key={image} className="relative aspect-square sm:aspect-[4/3] rounded-md overflow-hidden border border-slate-200 bg-slate-100">
-                    <Image
+                    <ResponsiveLightboxImage
                       src={image}
                       alt={`Infrastructure image ${index + 1}`}
-                      fill
-                      unoptimized
-                      className="object-contain hover:scale-105 transition-transform duration-300"
+                      sources={infraImages}
+                      initialIndex={index}
+                      imageClassName="object-contain hover:scale-105 transition-transform duration-300"
                     />
                   </div>
                 ))}

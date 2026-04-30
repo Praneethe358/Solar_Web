@@ -9,6 +9,7 @@ import { SectionWrapper } from "@/components/SectionWrapper";
 import { ProductEnquireModal } from "@/components/ProductEnquireModal";
 import { ProductCard } from "@/components/ProductCard";
 import { ProductCategorySidebar } from "@/components/ProductCategorySidebar";
+import { ResponsiveLightboxImage } from "@/components/ResponsiveLightboxImage";
 
 export const dynamicParams = true;
 
@@ -70,10 +71,12 @@ export default async function ProductDetailsPage({
             <div className="col-span-1 bg-white border-r border-slate-100 flex flex-col min-w-0">
               <div className="relative aspect-[16/10] sm:aspect-[16/10] lg:aspect-[16/10] overflow-hidden">
                 {product.images && product.images.length > 0 ? (
-                  <img
+                  <ResponsiveLightboxImage
                     src={product.images[0]}
                     alt={product.name}
-                    className="h-full w-full object-cover"
+                    sources={product.images}
+                    initialIndex={0}
+                    imageClassName="object-cover"
                   />
                 ) : (
                   <div className="h-full w-full bg-slate-100/50 flex items-center justify-center border-2 border-dashed border-slate-200">
