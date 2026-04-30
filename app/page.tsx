@@ -16,6 +16,15 @@ export default async function Home() {
     getCatalogServices(),
     getCatalogProducts(),
   ]);
+  const siteUrl = "https://supersolarfence.com";
+  const tamilPdfPath = "/pdf/Notes_260313_112341.pdf";
+  const gazettePdfPath = "/pdf/Forest Dept -Solar Fence-Gazette-Date 04.07.2023.pdf";
+  const tamilPdfViewerUrl = `https://docs.google.com/gview?embedded=1&url=${encodeURIComponent(
+    `${siteUrl}${tamilPdfPath}`,
+  )}`;
+  const gazettePdfViewerUrl = `https://docs.google.com/gview?embedded=1&url=${encodeURIComponent(
+    `${siteUrl}${gazettePdfPath}`,
+  )}`;
 
   const fallbackImages = [
     {
@@ -147,7 +156,7 @@ export default async function Home() {
         <div className="max-w-[1200px] mx-auto px-4 py-4 sm:p-5 lg:px-8">
           <div className="flex flex-col sm:flex-row gap-3">
             <a 
-              href="/pdf/Notes_260313_112341.pdf" 
+              href={tamilPdfViewerUrl}
               target="_blank" 
               rel="noopener noreferrer"
               className="flex-1 flex items-center gap-3.5 bg-[#f8faf9] border border-[#639922]/30 rounded-xl p-3 sm:p-4 hover:border-[#639922]/60 hover:shadow-sm transition-all active:scale-[0.98] group"
@@ -164,7 +173,7 @@ export default async function Home() {
             </a>
             
             <a 
-              href="/pdf/Forest Dept -Solar Fence-Gazette-Date 04.07.2023.pdf" 
+              href={gazettePdfViewerUrl}
               target="_blank" 
               rel="noopener noreferrer"
               className="flex-1 flex items-center gap-3.5 bg-[#f8faf9] border border-[#639922]/30 rounded-xl p-3 sm:p-4 hover:border-[#639922]/60 hover:shadow-sm transition-all active:scale-[0.98] group"
