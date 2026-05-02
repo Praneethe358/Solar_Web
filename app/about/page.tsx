@@ -1,6 +1,36 @@
+import { Metadata } from 'next';
 import Link from "next/link";
 import { AboutProductVideos } from "@/components/AboutProductVideos";
 import { ResponsiveLightboxImage } from "@/components/ResponsiveLightboxImage";
+
+export const metadata: Metadata = {
+  title: "About | Solar Fencing Company in Coimbatore",
+  description: "Learn about Super Solar Power Fencing Technology, the leading solar fencing company in Coimbatore. We are solar fencing experts in Tamil Nadu, specializing in electric fencing solutions for farms and industries.",
+  keywords: [
+    "about Super Solar Power Fencing Technology",
+    "solar fencing company in Coimbatore",
+    "solar fencing experts Tamil Nadu",
+    "electric fencing specialists Coimbatore"
+  ],
+  alternates: {
+    canonical: "https://supersolarfence.com/about",
+  },
+  openGraph: {
+    title: "About Super Solar Power Fencing Technology",
+    description: "Learn about Super Solar Power Fencing Technology, the leading solar fencing company in Coimbatore.",
+    url: "https://supersolarfence.com/about",
+    siteName: "Super Solar Power Fencing Technology",
+    images: [{ url: "https://supersolarfence.com/about-section-home.avif", width: 1200, height: 630 }],
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Super Solar Power Fencing Technology",
+    description: "Learn about Super Solar Power Fencing Technology, the leading solar fencing company in Coimbatore.",
+    images: ["https://supersolarfence.com/about-section-home.avif"],
+  },
+};
 
 export const revalidate = 30;
 

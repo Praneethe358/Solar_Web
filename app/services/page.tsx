@@ -1,7 +1,37 @@
+import { Metadata } from 'next';
 import { getCatalogProjects } from "@/lib/catalogData";
 import { getCatalogServices } from "@/lib/catalogData";
 import { ServicesDetailsPanel } from "@/components/ServicesDetailsPanel";
 import { ResponsiveLightboxImage } from "@/components/ResponsiveLightboxImage";
+
+export const metadata: Metadata = {
+  title: "Services | Solar Fencing Services Coimbatore",
+  description: "Super Solar Power Fencing Technology offers expert solar fencing services in Coimbatore, solar fence installation across Tamil Nadu, electric fencing solutions, and farm fencing services.",
+  keywords: [
+    "solar fencing services Coimbatore",
+    "solar fence installation Tamil Nadu",
+    "electric fencing solutions",
+    "farm fencing services"
+  ],
+  alternates: {
+    canonical: "https://supersolarfence.com/services",
+  },
+  openGraph: {
+    title: "Services | Solar Fencing Services Coimbatore",
+    description: "Super Solar Power Fencing Technology offers expert solar fencing services in Coimbatore, solar fence installation across Tamil Nadu, and more.",
+    url: "https://supersolarfence.com/services",
+    siteName: "Super Solar Power Fencing Technology",
+    images: [{ url: "https://supersolarfence.com/about-section-home.avif", width: 1200, height: 630 }],
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Services | Solar Fencing Services Coimbatore",
+    description: "Super Solar Power Fencing Technology offers expert solar fencing services in Coimbatore, solar fence installation across Tamil Nadu, and more.",
+    images: ["https://supersolarfence.com/about-section-home.avif"],
+  },
+};
 
 // Dummy service data matching the homepage section
 const serviceData = [

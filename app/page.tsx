@@ -7,8 +7,31 @@ import { Component as BlogPostsSection } from "@/components/ui/blog-posts";
 import { getCatalogProducts, getCatalogServices } from "@/lib/catalogData";
 
 export const metadata: Metadata = {
-  title: 'Super Solar Fencing | Top Solar Solutions in Coimbatore',
-  description: 'Protect your premises with advanced solar fencing. Super Solar Fencing provides professional installation, top-grade materials, and maintenance in Tamil Nadu.',
+  metadataBase: new URL('https://supersolarfence.com'),
+  title: 'Super Solar Power Fencing Technology | Solar Fencing Company in Coimbatore',
+  description: 'Super Solar Power Fencing Technology is a leading solar fencing company in Coimbatore, Tamil Nadu. We provide reliable solar power fencing solutions for farms, industries, and residential properties.',
+  openGraph: {
+    title: 'Super Solar Power Fencing Technology | Solar Fencing Company in Coimbatore',
+    description: 'Leading solar fencing company in Coimbatore offering reliable solar power fencing solutions for farms, industries, and residential properties.',
+    url: 'https://supersolarfence.com',
+    siteName: 'Super Solar Power Fencing Technology',
+    locale: 'en_IN',
+    type: 'website',
+    images: [
+      {
+        url: 'https://supersolarfence.com/about-section-home.avif',
+        width: 1200,
+        height: 630,
+        alt: 'Super Solar Power Fencing Technology',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Super Solar Power Fencing Technology | Solar Fencing Company in Coimbatore',
+    description: 'Leading solar fencing company in Coimbatore offering reliable solar power fencing solutions for farms, industries, and residential properties.',
+    images: ['https://supersolarfence.com/about-section-home.avif'],
+  },
 };
 
 export default async function Home() {
@@ -112,8 +135,112 @@ export default async function Home() {
     }
   ];
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Super Solar Power Fencing Technology",
+    "url": "https://supersolarfence.com",
+    "description": "Leading solar fencing company in Coimbatore offering reliable solar power fencing solutions for farms, industries, and residential properties.",
+    "telephone": "+918760285985",
+    "email": "supersolarfenc@gmail.com",
+    "logo": "https://supersolarfence.com/fav-icon.svg",
+    "image": "https://supersolarfence.com/about-section-home.avif",
+    "priceRange": "$$",
+    "openingHours": "Mo-Su 00:00-23:59",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Siruvani Main Road, GH Hospital (opposite), High School Bus Stop, Post Pooluvapatti",
+      "addressLocality": "Coimbatore",
+      "addressRegion": "Tamil Nadu",
+      "postalCode": "641101",
+      "addressCountry": "India"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 10.9388339,
+      "longitude": 76.7844005
+    },
+    "areaServed": "Tamil Nadu",
+    "sameAs": [
+      "https://www.facebook.com/share/1ExVB36hD3/",
+      "https://www.instagram.com/supersolarfencing_8760285985",
+      "https://www.youtube.com/@supersolarfencing150"
+    ]
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is solar power fencing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Solar power fencing is an advanced perimeter security solution that uses solar energy to power an energizer. The energizer sends brief, high-voltage, non-lethal electrical pulses through the fence wires to effectively deter intruders and wild animals."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does solar fencing work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A solar panel charges a battery during the day, which powers an electric energizer. When an animal or intruder touches the conductive wires, it completes an electrical circuit with the ground, delivering a sharp but safe shock that acts as a strong psychological and physical barrier."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the benefits of solar fencing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Key benefits include 24/7 standalone operation without reliance on grid electricity, low maintenance, cost-effectiveness, zero electricity bills, and highly reliable security for agricultural farms, industrial facilities, and residential properties."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is solar fencing safe for humans and animals?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, solar electric fencing is completely safe. The shock delivered is pulsed (intermittent) and non-lethal, designed strictly to deter rather than harm. It complies with safety standards to protect both humans and animals while keeping premises secure."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the cost of solar fencing in Coimbatore?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The cost of solar fencing varies based on the perimeter length, number of wire lines, and the type of components used (like GI wire and energizer capacity). Contact Super Solar Power Fencing Technology for a customized, competitive quote tailored to your specific property in Coimbatore."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where can solar fencing be used?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Solar fencing is highly versatile. It is extensively used to protect agricultural lands and coconut farms from wild animals like elephants and boars, and is also applied for high-security perimeter protection in factories, warehouses, and residential estates."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why choose Super Solar Power Fencing Technology?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "As a reliable solar fencing company in Coimbatore, Tamil Nadu, we provide top-grade materials, expert installation, affordable pricing, and prompt maintenance services. Rely on our experienced team for long-lasting, customized perimeter security solutions."
+        }
+      }
+    ]
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       {/* Mobile-first hero with responsive media and clear CTA hierarchy */}
       <section className="relative w-full min-h-[min(55svh,360px)] sm:min-h-[min(78vh,760px)] md:min-h-[min(52vh,560px)] md:max-h-[560px] overflow-hidden bg-[#1F2924]">
         <HeroCarousel />
@@ -128,6 +255,9 @@ export default async function Home() {
               Super Solar
               <br className="hidden sm:block" />
               <span className="relative block sm:inline-block text-transparent bg-clip-text bg-gradient-to-r from-white to-[#9CCF63]">Power Fencing Technology</span>
+              <span className="block mt-2 text-base sm:text-xl md:text-2xl font-medium text-gray-300 tracking-normal">
+                – Leading Solar Fencing Company in Coimbatore
+              </span>
             </h1>
             <p className="animate-fade-in-up delay-200 text-[12px] leading-5 text-gray-200 sm:max-w-2xl sm:text-base sm:leading-7">
               Durable, low-maintenance fencing systems built for farms, factories,
