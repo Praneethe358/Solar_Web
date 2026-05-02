@@ -5,7 +5,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     {
-      url: 'https://supersolarfence.com',
+      url: 'https://supersolarfence.com/',
       lastModified: defaultLastModified,
       changeFrequency: 'weekly',
       priority: 1.0,
@@ -29,19 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: 'https://supersolarfence.com/gallery',
-      lastModified: defaultLastModified,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
       url: 'https://supersolarfence.com/contact',
-      lastModified: defaultLastModified,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: 'https://supersolarfence.com/blogs',
       lastModified: defaultLastModified,
       changeFrequency: 'monthly',
       priority: 0.8,
